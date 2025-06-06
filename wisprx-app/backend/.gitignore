@@ -1,0 +1,24 @@
+node_modules
+public/*
+dist
+!public/.gitkeep
+.env
+.env.test
+.log
+*.log
+package-lock.json
+yarn.lock
+yarn-error.log
+
+/src/config/sentry.js
+
+# Ignore test-related files
+/coverage.data
+/coverage/
+
+_src_broken
+.devtools
+.vscode
+# Ignore Docker-related files
+.Dockerfile
+.Dockerignore
