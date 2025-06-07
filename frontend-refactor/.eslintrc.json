@@ -18,14 +18,20 @@
       "version": "18"
     }
   },
-  "plugins": ["react", "@typescript-eslint", "react-hooks", "tailwindcss"],
+  "plugins": [
+    "react",
+    "@typescript-eslint",
+    "react-hooks",
+    "tailwindcss"
+  ],
   "extends": [
     "eslint:recommended",
     "plugin:react/recommended",
     "plugin:react-hooks/recommended",
     "plugin:@typescript-eslint/recommended",
     "plugin:tailwindcss/recommended",
-    "prettier"
+    "prettier",
+    "plugin:storybook/recommended"
   ],
   "rules": {}
 }
