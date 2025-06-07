@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { useRouter } from 'next/router';
-import { login, LoginPayload } from '../services/authService';
-import { useAuthStore } from '../stores/useAuthStore';
+import { login, LoginPayload } from '@features/auth/services/authService';
+import { useAuthStore } from '@features/auth/stores/useAuthStore';
 
 export function useLogin() {
   const [loading, setLoading] = useState(false);

@@ -1,4 +1,4 @@
-import { api, openApi } from '../../../shared/services/api';
+import { api, openApi } from '@shared/services/api';
 
 export interface LoginPayload {
   email: string;
