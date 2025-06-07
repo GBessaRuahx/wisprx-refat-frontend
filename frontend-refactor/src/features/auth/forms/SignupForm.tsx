@@ -1,7 +1,7 @@
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
-import { signupSchema } from '../schemas/signupSchema';
-import { useSignUp } from '../hooks/useSignUp';
+import { signupSchema } from '@features/auth/schemas/signupSchema';
+import { useSignUp } from '@features/auth/hooks/useSignUp';
 
 export function SignupForm() {
   const { handleSignUp, loading } = useSignUp();

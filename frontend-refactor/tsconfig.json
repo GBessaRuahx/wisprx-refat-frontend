@@ -17,6 +17,13 @@
     "resolveJsonModule": true,
     "isolatedModules": true,
     "jsx": "preserve",
+    "baseUrl": "./src",
+    "paths": {
+      "@features/*": ["features/*"],
+      "@shared/*": ["shared/*"],
+      "@ui/*": ["ui/*"],
+      "@entities/*": ["entities/*"]
+    },
     "plugins": [
       {
         "name": "next"
