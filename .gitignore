@@ -1,0 +1,14 @@
+# Ignore dependencies
+**/node_modules/
+
+# Ignore build outputs
+frontend-refactor/.next/
+frontend-refactor/out/
+
+# Logs
+logs/
+*.log
+
+# Environment files
+*.env
+
