@@ -14,6 +14,17 @@ Scripts de validação – Após cada etapa, rode linter e testes (Vitest) no pr
 
 Marcação de legados – Enquanto um componente/hook ainda não foi migrado, documente no domínio correspondente ou crie wrappers temporários para facilitar a busca.
 
+Tarefas Iniciais
+
+1. Finalizar configuração básica do `frontend-refactor` (Next.js, Tailwind, ESLint, Prettier e Vitest).
+2. Copiar `services/api.js`, `translate/` e utilidades para `src/shared/`.
+3. Criar pasta `entities/` com tipos iniciais como `User` e `Ticket`.
+4. Montar feature `auth` com páginas, hooks e componentes dedicados.
+5. Ajustar rotas em `src/app/routes` para utilizar essas novas páginas.
+6. Reunir componentes do Dashboard em `features/dashboard/`.
+7. Iniciar migração de Tickets para `features/tickets/`, convertendo para Tailwind e shadcn/ui.
+8. Registrar cada passo no `REFATORACOES.md` e remover arquivos antigos conforme avançar.
+
 Plano tático inicial
 
 Preparação do novo projeto
