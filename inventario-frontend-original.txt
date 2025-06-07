@@ -253,13 +253,13 @@ src/pages/Users/index.js
 src/routes/index.js
 src/routes/Route.js
 src/rules.js
-src/services/api.js
-src/services/socket.js
-src/stores/useNodeStorage.js
-src/translate/calendar-locale.js
-src/translate/i18n.js
-src/translate/languages/en.js
-src/translate/languages/es.js
-src/translate/languages/index.js
-src/translate/languages/pt.js
-src/utils/capitalize.js
+- [x] src/services/api.js -> frontend-refactor/src/shared/services/api.ts
+- src/services/socket.js
+- src/stores/useNodeStorage.js
+- [x] src/translate/calendar-locale.js -> frontend-refactor/src/shared/i18n/calendar-locale.ts
+- [x] src/translate/i18n.js -> frontend-refactor/src/shared/i18n/i18n.ts
+- [x] src/translate/languages/en.js -> frontend-refactor/src/shared/i18n/languages/en.ts
+- [x] src/translate/languages/es.js -> frontend-refactor/src/shared/i18n/languages/es.ts
+- [x] src/translate/languages/index.js -> frontend-refactor/src/shared/i18n/languages/index.ts
+- [x] src/translate/languages/pt.js -> frontend-refactor/src/shared/i18n/languages/pt.ts
+- [x] src/utils/capitalize.js -> frontend-refactor/src/shared/utils/capitalize.ts
