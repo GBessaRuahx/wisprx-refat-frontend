@@ -18,7 +18,7 @@ src/assets/webhook.png
 src/components/AnnouncementModal/index.js
 src/components/AnnouncementsPopover/index.js
 src/components/BackdropLoading/index.js
-src/components/ButtonWithSpinner/index.js
+- [x] src/components/ButtonWithSpinner/index.js -> frontend-refactor/src/ui/Button.jsx
 src/components/CampaignModal/index.js
 src/components/CampaignModalPhrase/index.js
 src/components/Can/index.js
@@ -41,7 +41,7 @@ src/components/CheckoutPage/ReviewOrder/styles.js
 src/components/CheckoutPage/styles.js
 src/components/ColorPicker/index.js
 src/components/CompaniesManager/index.js
-src/components/ConfirmationModal/index.js
+- [x] src/components/ConfirmationModal/index.js -> frontend-refactor/src/ui/Modal.jsx
 src/components/ContactDrawer/index.js
 src/components/ContactDrawerSkeleton/index.js
 src/components/ContactForm/index.js
@@ -76,7 +76,7 @@ src/components/FlowBuilderSingleBlockModal/index.js
 src/components/FormFields/CheckboxField.js
 src/components/FormFields/DatePickerField.js
 src/components/FormFields/index.js
-src/components/FormFields/InputField.js
+- [x] src/components/FormFields/InputField.js -> frontend-refactor/src/ui/Input.jsx
 src/components/FormFields/SelectField.js
 src/components/HelpsManager/index.js
 src/components/ImportContactsModal/index.js
@@ -120,7 +120,7 @@ src/components/SchedulesForm/index.js
 src/components/Settings/Options.js
 src/components/SubscriptionModal/index.js
 src/components/SubscriptionStepper/index.js
-src/components/TableRowSkeleton/index.js
+- [x] src/components/TableRowSkeleton/index.js -> frontend-refactor/src/ui/TableRowSkeleton.jsx
 src/components/TabPanel/index.js
 src/components/TagModal/index.js
 src/components/TagModal/index.js_Backup
