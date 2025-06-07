@@ -7,3 +7,5 @@
 ## 2025-06-07 – b28c357d0bf8333c383a9a0d5ea4fe356e6c9eef
 - Remoção de placeholder do log de refatoração.
 
+## 2025-06-07 – 3e9c122d1d4c522bf6265a739a09358b85fa0d77
+- Instalação de shadcn-ui, tailwind-merge e Cypress no projeto base.
