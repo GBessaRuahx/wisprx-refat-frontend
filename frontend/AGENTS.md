@@ -166,6 +166,23 @@ As bibliotecas e ferramentas adotadas para a refatoração estão documentadas n
 
 Toda refatoração deve seguir as recomendações definidas ali (ex.: uso de Zustand para estado, Zod para validação, shadcn/ui para UI, etc.), garantindo consistência técnica entre as features.
 
+## 📌 Observações sobre Segurança e Atualização
+
+Durante o processo de refatoração, um `npm audit` foi executado no frontend original e revelou **centenas de vulnerabilidades críticas e altas**, a maioria herdada do uso do Create React App (`react-scripts`) e bibliotecas relacionadas (`postcss`, `webpack`, `babel`, `jest`, etc).
+
+Como parte do processo de refatoração, **todas as dependências abaixo devem ser substituídas** ou atualizadas por equivalentes modernas já listadas nas tabelas acima:
+
+- `react-scripts` → substituído por **Vite**
+- `jest` → substituído por **Vitest**
+- `postcss`, `webpack`, `css-loader`, etc. → eliminados com Tailwind + Vite
+- `axios@<1.9.0` → atualizado para versão segura (1.9+)
+- `xlsx` → revisar versão ou substituir (sem correção conhecida)
+- `babel` → modernizar com Vite/Babel minimalista, evitar presets herdados
+
+📌 **Recomenda-se NÃO reaproveitar a árvore de dependências antiga.** A refatoração deve partir de uma base limpa (`pnpm init`, `vite`, etc.), e os pacotes devem ser instalados conforme definidos neste arquivo de ferramentas.
+
+👉 Este arquivo deve ser atualizado sempre que houver substituições críticas para que a documentação e a prática sigam alinhadas.
+
 ## 🗂️ Documentação de Refatorações
 
 Toda refatoração realizada deve ser registrada no arquivo único `REFATORACOES.md`, localizado na raiz do diretório `frontend-refactor/`.
