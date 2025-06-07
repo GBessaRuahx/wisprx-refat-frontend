@@ -9,3 +9,5 @@
 
 ## 2025-06-07 – 3e9c122d1d4c522bf6265a739a09358b85fa0d77
 - Instalação de shadcn-ui, tailwind-merge e Cypress no projeto base.
+## 2025-06-07 – ddd99913a870028f06d08f11756212af9bd9f99f
+- Remoção do arquivo duplicado tailwind.config.js em src/styles.
