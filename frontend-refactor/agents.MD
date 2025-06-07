@@ -54,7 +54,9 @@ Repetir o processo: mover arquivos, ajustar importações, substituir Material�
 
 Limpeza contínua
 
-A cada domínio migrado, remover arquivos antigos do diretório frontend/ e eliminar duplicidades (*.old, *.bkp).
+A cada domínio migrado, renomear arquivos antigos do diretório frontend/ para garantir que nao sera feito novamente. eliminar duplicidades (*.old, *.bkp).
+
+Usar o arquivo frontend/inventario-frontend-original.txt para guiar o que ja foi feito, e no fim de cada refatoraçao, atualizar o arquivo marcando como feito o item na lista.
 
 Registrar tudo no REFATORACOES.md.
 
