@@ -12,6 +12,7 @@ src/features/<domínio>/
 ├── schemas/      # Validações com Zod
 └── stores/       # Estado local com Zustand
 ```
+⚠️ Importante: durante a refatoração, o estilo visual atual das telas e componentes deve ser mantido fiel ao original. O foco é reorganizar e modernizar o código sem alterar a aparência ou comportamento visual. As alterações devem facilitar manutenções futuras (ex.: uso de Tailwind, separação clara por feature), mas não devem resultar em mudanças perceptíveis para o usuário final neste momento.
 
 Regras gerais:
 - Todo o código deve ser escrito em TypeScript (`.ts` / `.tsx`)
