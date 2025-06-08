@@ -28,3 +28,5 @@
 
 
 
+## 2025-06-08 – 459f597
+- Ajuste do wrapper QueryClientProvider e atualização do inventário.
