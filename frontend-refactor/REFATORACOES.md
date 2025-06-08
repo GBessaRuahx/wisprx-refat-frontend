@@ -26,7 +26,9 @@
 ## 2025-06-07 – 7ef2d16b8c8b7e640272bfb9b2480e5710f8c8a7
 - Adição do arquivo postcss.config.js para habilitar Tailwind.
 
-
+## 2025-06-08 – 032a42a0c128506fed51fffb91194adf70d093db
+- Adição do Storybook e dependências essenciais.
 
 ## 2025-06-08 – 459f597
 - Ajuste do wrapper QueryClientProvider e atualização do inventário.
+
