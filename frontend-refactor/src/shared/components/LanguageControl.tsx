@@ -33,12 +33,11 @@ export default function LanguageControl() {
   }, []);
 
   return (
-    <div className="space-y-2">
-      <label htmlFor="language-select" className="font-medium">
+    <fieldset className="space-y-2">
+      <legend className="font-medium">
         {i18n.t('selectLanguage')}
-      </label>
+      </legend>
       <div
-        id="language-select"
         className="flex space-x-4"
         onChange={handleLanguageChange}
       >
