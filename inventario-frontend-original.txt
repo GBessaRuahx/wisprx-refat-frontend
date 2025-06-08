@@ -80,7 +80,7 @@ src/components/FormFields/index.js
 src/components/FormFields/SelectField.js
 src/components/HelpsManager/index.js
 src/components/ImportContactsModal/index.js
-src/components/LanguageControl/index.js
+- [x] src/components/LanguageControl/index.js -> frontend-refactor/src/shared/components/LanguageControl.tsx
 src/components/LocationPreview/index.js
 src/components/LogoTheme/index.js
 src/components/MainContainer/index.js

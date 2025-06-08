@@ -17,7 +17,7 @@ import { AuthContext } from "../../context/Auth/AuthContext";
 import logo from "../../assets/logo.png";
 import {LanguageOutlined} from "@material-ui/icons";
 import {IconButton, Menu, MenuItem} from "@material-ui/core";
-import LanguageControl from "../../components/LanguageControl";
+import LanguageControl from "@shared/components/LanguageControl";
 
 
 const Copyright = () => {
