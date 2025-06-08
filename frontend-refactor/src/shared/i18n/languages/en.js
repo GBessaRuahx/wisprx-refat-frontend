@@ -40,16 +40,6 @@ const messages = {
 					queues: "Queues",
 				},
 			},
-			login: {
-				title: "Login",
-				form: {
-					email: "Email",
-					password: "Password",
-				},
-				buttons: {
-					submit: "Login",
-					register: "Sign up now!",
-				},
 			},
 			resetPassword: {
 				title: "Reset Password",
@@ -298,11 +288,22 @@ const messages = {
 				},
 			},
 			auth: {
-				toasts: {
-					success: "Login successful!",
-				},
-				token: "Token",
-			},
+                                toasts: {
+                                        success: "Login successful!",
+                                },
+                                token: "Token",
+                                login: {
+                                        title: "Login",
+                                        form: {
+                                                email: "Email",
+                                                password: "Password",
+                                        },
+                                        buttons: {
+                                                submit: "Login",
+                                                register: "Sign up now!",
+                                        },
+                                },
+                        },
 			connections: {
 				title: "Connections",
 				toasts: {

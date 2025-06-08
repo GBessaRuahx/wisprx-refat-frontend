@@ -34,3 +34,5 @@
 
 ## 2025-06-08 – 732b8460b3677cc9bc7ba13e36b4a0380d55a1fc
 - Atualização do arquivo .eslintrc.json para usar Next.js e TypeScript.
+## 2025-06-08 – b6e9ca90082cce04f8da829824c92dd53adcc6a1
+- Move logo.png para shared/assets e ajuste de traduções de login.

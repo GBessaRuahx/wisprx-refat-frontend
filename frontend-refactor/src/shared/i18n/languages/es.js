@@ -40,17 +40,6 @@ const messages = {
           queues: "Colas",
         },
       },
-      login: {
-        title: "Iniciar sesión",
-        form: {
-          email: "Correo electrónico",
-          password: "Contraseña",
-        },
-        buttons: {
-          submit: "Entrar",
-          register: "¡Regístrate ahora mismo!",
-        },
-      },
       resetPassword: {
         title: "Restablecer Contraseña",
         toasts: {
@@ -303,6 +292,17 @@ const messages = {
           success: "¡Inicio de sesión realizado con éxito!",
         },
         token: "Token",
+        login: {
+          title: "Iniciar sesión",
+          form: {
+            email: "Correo electrónico",
+            password: "Contraseña",
+          },
+          buttons: {
+            submit: "Entrar",
+            register: "¡Regístrate ahora mismo!",
+          },
+        },
       },
       connections: {
         title: "Conexiones",

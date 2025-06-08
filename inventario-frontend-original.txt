@@ -5,7 +5,7 @@ src/App.js
 src/assets/chat_notify.mp3
 src/assets/dialogflow.png
 src/assets/logo-dark.png
-src/assets/logo.png
+- [x] src/assets/logo.png -> frontend-refactor/src/shared/assets/logo.png
 src/assets/n8n.png
 src/assets/planilha.xlsx
 src/assets/sound.mp3

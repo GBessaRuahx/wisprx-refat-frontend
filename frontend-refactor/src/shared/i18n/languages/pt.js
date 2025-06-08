@@ -40,16 +40,6 @@ const messages = {
           queues: "Filas",
         },
       },
-      login: {
-        title: "Login",
-        form: {
-          email: "Email",
-          password: "Senha",
-        },
-        buttons: {
-          submit: "Entrar",
-          register: "Registre-se, agora mesmo!",
-        },
       },
       resetPassword: {
         title: "Redefinir Senha",
@@ -305,6 +295,17 @@ const messages = {
           success: "Login efetuado com sucesso!",
         },
         token: "Token",
+        login: {
+          title: "Login",
+          form: {
+            email: "Email",
+            password: "Senha",
+          },
+          buttons: {
+            submit: "Entrar",
+            register: "Registre-se, agora mesmo!",
+          },
+        },
       },
       connections: {
         title: "Conexões",
