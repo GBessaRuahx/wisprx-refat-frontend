@@ -11,9 +11,14 @@
     "sourceType": "module",
     "ecmaFeatures": {
       "jsx": true
-    }
+    },
+    "project": "./tsconfig.json"
   },
-  "plugins": ["@typescript-eslint", "tailwindcss"],
+  "plugins": [
+    "@typescript-eslint",
+    "tailwindcss",
+    "storybook"
+  ],
   "extends": [
     "next/core-web-vitals",
     "plugin:@typescript-eslint/recommended",
@@ -21,5 +26,7 @@
     "plugin:storybook/recommended",
     "prettier"
   ],
-  "rules": {}
+  "rules": {
+    "tailwindcss/no-custom-classname": "off"
+  }
 }
