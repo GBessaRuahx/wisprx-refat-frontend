@@ -27,4 +27,5 @@
 - Adição do arquivo postcss.config.js para habilitar Tailwind.
 
 
-
+## 2025-06-08 – 032a42a0c128506fed51fffb91194adf70d093db
+- Adicao do Storybook e dependencias essenciais.
