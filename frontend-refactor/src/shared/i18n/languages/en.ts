@@ -40,7 +40,6 @@ const messages = {
 					queues: "Queues",
 				},
 			},
-			},
 			resetPassword: {
 				title: "Reset Password",
 				toasts: {
