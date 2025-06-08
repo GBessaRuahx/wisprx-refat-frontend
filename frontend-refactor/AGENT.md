@@ -48,7 +48,7 @@ Usar o arquivo frontend/inventario-frontend-original.txt para guiar o que ja foi
 
 Registrar tudo no REFATORACOES.md.
 
-Testes e verificação
+-Testes e verificação
 
 Adotar Vitest + React Testing Library para novos componentes.
 

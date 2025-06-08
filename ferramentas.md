@@ -125,3 +125,7 @@ Cada item abaixo representa uma escolha validada que substitui a tecnologia ante
   - `axios < 1.9.0`
   - `xlsx` com CVEs não resolvidos
 - O projeto refatorado deve ser iniciado limpo (`pnpm init`) e seguir os padrões definidos neste arquivo
+
+
+
+

@@ -22,11 +22,12 @@
   "extends": [
     "next/core-web-vitals",
     "plugin:@typescript-eslint/recommended",
-    "plugin:tailwindcss/recommended",
     "plugin:storybook/recommended",
     "prettier"
   ],
   "rules": {
+    "tailwindcss/classnames-order": "warn",
+    "tailwindcss/enforces-shorthand": "off",
     "tailwindcss/no-custom-classname": "off"
   }
 }

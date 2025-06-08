@@ -1,0 +1,423 @@
+src/
+├── App.js
+├── assets
+│   ├── chat_notify.mp3
+│   ├── dialogflow.png
+│   ├── logo-dark.png
+│   ├── logo.png
+│   ├── n8n.png
+│   ├── planilha.xlsx
+│   ├── sound.mp3
+│   ├── sound.ogg
+│   ├── typebot-ico.png
+│   ├── typebot.jpg
+│   ├── wa-background-dark.png
+│   ├── wa-background.png
+│   └── webhook.png
+├── components
+│   ├── AnnouncementModal
+│   │   └── index.js
+│   ├── AnnouncementsPopover
+│   │   └── index.js
+│   ├── BackdropLoading
+│   │   └── index.js
+│   ├── ButtonWithSpinner
+│   │   └── index.js
+│   ├── CampaignModal
+│   │   └── index.js
+│   ├── CampaignModalPhrase
+│   │   └── index.js
+│   ├── Can
+│   │   └── index.js
+│   ├── CheckoutPage
+│   │   ├── CheckoutPage.js
+│   │   ├── CheckoutSuccess
+│   │   ├── FormModel
+│   │   ├── Forms
+│   │   ├── index.js
+│   │   ├── ReviewOrder
+│   │   └── styles.js
+│   ├── ColorPicker
+│   │   └── index.js
+│   ├── CompaniesManager
+│   │   └── index.js
+│   ├── ConfirmationModal
+│   │   └── index.js
+│   ├── ContactDrawer
+│   │   └── index.js
+│   ├── ContactDrawerSkeleton
+│   │   └── index.js
+│   ├── ContactForm
+│   │   └── index.js
+│   ├── ContactListDialog
+│   │   └── index.js
+│   ├── ContactListItemModal
+│   │   └── index.js
+│   ├── ContactListTable
+│   │   └── index.js
+│   ├── ContactModal
+│   │   └── index.js
+│   ├── ContactNotes
+│   │   └── index.js
+│   ├── ContactNotesDialog
+│   │   └── index.js
+│   ├── ContactNotesDialogListItem
+│   │   └── index.js
+│   ├── ContactTag
+│   │   └── index.js
+│   ├── CurrencyInput
+│   │   └── index.js
+│   ├── DarkMode
+│   │   └── index.js
+│   ├── Dashboard
+│   │   ├── CardCounter.js
+│   │   └── TableAttendantsStatus.js
+│   ├── Dialog
+│   │   └── index.js
+│   ├── FileModal
+│   │   └── index.js
+│   ├── FlowBuilderAddAudioModal
+│   │   └── index.js
+│   ├── FlowBuilderAddImgModal
+│   │   └── index.js
+│   ├── FlowBuilderAddOpenAIModal
+│   │   └── index.js
+│   ├── FlowBuilderAddQuestionModal
+│   │   └── index.js
+│   ├── FlowBuilderAddTextModal
+│   │   └── index.js
+│   ├── FlowBuilderAddTicketModal
+│   │   └── index.js
+│   ├── FlowBuilderAddTypebotModal
+│   │   └── index.js
+│   ├── FlowBuilderAddVideoModal
+│   │   └── index.js
+│   ├── FlowBuilderConditionModal
+│   │   └── index.js
+│   ├── FlowBuilderIntervalModal
+│   │   └── index.js
+│   ├── FlowBuilderMenuModal
+│   │   └── index.js
+│   ├── FlowBuilderModal
+│   │   └── index.js
+│   ├── FlowBuilderRandomizerModal
+│   │   └── index.js
+│   ├── FlowBuilderSingleBlockModal
+│   │   └── index.js
+│   ├── FormFields
+│   │   ├── CheckboxField.js
+│   │   ├── DatePickerField.js
+│   │   ├── index.js
+│   │   ├── InputField.js
+│   │   └── SelectField.js
+│   ├── HelpsManager
+│   │   └── index.js
+│   ├── ImportContactsModal
+│   │   └── index.js
+│   ├── LocationPreview
+│   │   └── index.js
+│   ├── LogoTheme
+│   │   └── index.js
+│   ├── MainContainer
+│   │   └── index.js
+│   ├── MainHeader
+│   │   └── index.js
+│   ├── MainHeaderButtonsWrapper
+│   │   └── index.js
+│   ├── MarkdownWrapper
+│   │   └── index.js
+│   ├── MessageInput
+│   │   ├── index.js
+│   │   └── RecordingTimer.js
+│   ├── MessageInputCustom
+│   │   ├── index.js
+│   │   └── RecordingTimer.js
+│   ├── MessageOptionsMenu
+│   │   └── index.js
+│   ├── MessagesList
+│   │   └── index.js
+│   ├── MessageVariablesPicker
+│   │   └── index.js
+│   ├── ModalImageCors
+│   │   └── index.js
+│   ├── ModalUsers
+│   │   └── index.js
+│   ├── NewTicketModal
+│   │   └── index.js
+│   ├── NotificationsPopOver
+│   │   ├── index_Antigo.js
+│   │   └── index.js
+│   ├── NotificationsVolume
+│   │   └── index.js
+│   ├── OnlyForSuperUser
+│   │   └── index.js
+│   ├── OutlinedDiv
+│   │   └── index.js
+│   ├── PlansManager
+│   │   └── index.js
+│   ├── PromptModal
+│   │   └── index.js
+│   ├── QrcodeModal
+│   │   └── index.js
+│   ├── QueueIntegrationModal
+│   │   └── index.js
+│   ├── QueueModal
+│   │   └── index.js
+│   ├── QueueOptions
+│   │   └── index.js
+│   ├── QueueSelect
+│   │   ├── index copy.js
+│   │   ├── index_erro.js
+│   │   └── index.js
+│   ├── QueueSelectCustom
+│   │   └── index.js
+│   ├── QueueSelectSingle
+│   │   └── index.js
+│   ├── QuickMessageDialog
+│   │   └── index.js
+│   ├── QuickMessagesTable
+│   │   └── index.js
+│   ├── ScheduleModal
+│   │   └── index.js
+│   ├── SchedulesForm
+│   │   └── index.js
+│   ├── Settings
+│   │   └── Options.js
+│   ├── SubscriptionModal
+│   │   └── index.js
+│   ├── SubscriptionStepper
+│   │   └── index.js
+│   ├── TableRowSkeleton
+│   │   └── index.js
+│   ├── TabPanel
+│   │   └── index.js
+│   ├── TagModal
+│   │   ├── index.js
+│   │   └── index.js_Backup
+│   ├── TagsContainer
+│   │   └── index.js
+│   ├── TagsFilter
+│   │   └── index.js
+│   ├── Ticket
+│   │   └── index.js
+│   ├── TicketActionButtons
+│   │   └── index.js
+│   ├── TicketActionButtonsCustom
+│   │   └── index.js
+│   ├── TicketAdvancedLayout
+│   │   └── index.js
+│   ├── TicketHeader
+│   │   └── index.js
+│   ├── TicketHeaderSkeleton
+│   │   └── index.js
+│   ├── TicketInfo
+│   │   └── index.js
+│   ├── TicketListItem
+│   │   └── index.js
+│   ├── TicketListItemCustom
+│   │   └── index.js
+│   ├── TicketMessagesDialog
+│   │   └── index.js
+│   ├── TicketOptionsMenu
+│   │   └── index.js
+│   ├── TicketsList
+│   │   └── index.js
+│   ├── TicketsListCustom
+│   │   └── index.js
+│   ├── TicketsListSkeleton
+│   │   └── index.js
+│   ├── TicketsManager
+│   │   └── index.js
+│   ├── TicketsManagerTabs
+│   │   └── index.js
+│   ├── TicketsQueueSelect
+│   │   └── index.js
+│   ├── Title
+│   │   └── index.js
+│   ├── TransferTicketModal
+│   │   └── index.js
+│   ├── TransferTicketModalCustom
+│   │   └── index.js
+│   ├── UserLanguageSelector
+│   │   └── index.js
+│   ├── UserModal
+│   │   └── index.js
+│   ├── UsersFilter
+│   │   └── index.js
+│   └── WhatsAppModal
+│       └── index.js
+├── context
+│   ├── Auth
+│   │   └── AuthContext.js
+│   ├── ReplyingMessage
+│   │   └── ReplyingMessageContext.js
+│   ├── Socket
+│   │   └── SocketContext.js
+│   ├── Tickets
+│   │   └── TicketsContext.js
+│   └── WhatsApp
+│       └── WhatsAppsContext.js
+├── errors
+│   └── toastError.js
+├── helpers
+│   └── contrastColor.js
+├── hooks
+│   ├── useAuth.js
+│   │   └── index.js
+│   ├── useCompanies
+│   │   └── index.js
+│   ├── useContactListItems
+│   │   └── index.js
+│   ├── useContactLists
+│   │   └── index.js
+│   ├── useContacts
+│   │   └── index.js
+│   ├── useDashboard
+│   │   └── index.js
+│   ├── useDate
+│   │   └── index.js
+│   ├── useHelps
+│   │   └── index.js
+│   ├── useInvoices
+│   │   └── index.js
+│   ├── useLocalStorage
+│   │   └── index.js
+│   ├── useMessages
+│   │   └── index.js
+│   ├── usePlans
+│   │   └── index.js
+│   ├── useQueues
+│   │   └── index.js
+│   ├── useQuickMessages
+│   │   └── index.js
+│   ├── useQuickMessages_OLD
+│   │   └── index.js
+│   ├── useSettings
+│   │   └── index.js
+│   ├── useTicketNotes
+│   │   └── index.js
+│   ├── useTickets
+│   │   └── index.js
+│   ├── useUsers
+│   │   └── index.js
+│   └── useWhatsApps
+│       └── index.js
+├── index.js
+├── layout
+│   ├── index.js
+│   ├── MainListItems.js
+│   ├── MainListItems.js.old
+│   ├── MainListItemsold.js.old
+│   └── themeContext.js
+├── pages
+│   ├── Annoucements
+│   │   └── index.js
+│   ├── CampaignReport
+│   │   └── index.js
+│   ├── Campaigns
+│   │   └── index.js
+│   ├── CampaignsConfig
+│   │   └── index.js
+│   ├── CampaignsPhrase
+│   │   └── index.js
+│   ├── Chat
+│   │   ├── ChatList.js
+│   │   ├── ChatMessages.js
+│   │   ├── ChatPopover.js
+│   │   └── index.js
+│   ├── Companies
+│   │   └── index.js
+│   ├── Connections
+│   │   └── index.js
+│   ├── ContactListItems
+│   │   └── index.js
+│   ├── ContactLists
+│   │   └── index.js
+│   ├── Contacts
+│   │   └── index.js
+│   ├── Dashboard
+│   │   ├── button.css
+│   │   ├── Chart.js
+│   │   ├── ChartsDate.js
+│   │   ├── ChartsUser.js
+│   │   ├── Filters.js
+│   │   ├── index.js
+│   │   ├── index_old.js
+│   │   └── Title.js
+│   ├── Files
+│   │   └── index.js
+│   ├── Financeiro
+│   │   └── index.js
+│   ├── FlowBuilder
+│   │   └── index.js
+│   ├── FlowBuilderConfig
+│   │   ├── index.js
+│   │   └── nodes
+│   ├── ForgetPassWord
+│   │   └── index.js
+│   ├── Helps
+│   │   └── index.js
+│   ├── Kanban
+│   │   ├── index.js
+│   │   └── responsive.css
+│   ├── Login
+│   │   ├── index.js
+│   │   └── style.css
+│   ├── MessagesAPI
+│   │   └── index.js
+│   ├── Prompts
+│   │   └── index.js
+│   ├── QueueIntegration
+│   │   └── index.js
+│   ├── Queues
+│   │   └── index.js
+│   ├── QuickMessages
+│   │   └── index.js
+│   ├── Schedules
+│   │   ├── index.js
+│   │   └── Schedules.css
+│   ├── Schedules.bkp
+│   ├── Settings
+│   │   └── index.js
+│   ├── SettingsCustom
+│   │   └── index.js
+│   ├── Signup
+│   │   ├── index.js
+│   │   └── style.css
+│   ├── Subscription
+│   │   └── index.js
+│   ├── Tags
+│   │   └── index.js
+│   ├── TicketResponsiveContainer
+│   │   └── index.js
+│   ├── Tickets
+│   │   └── index.js
+│   ├── TicketsAdvanced
+│   │   └── index.js
+│   ├── TicketsCustom
+│   │   └── index.js
+│   ├── ToDoList
+│   │   └── index.js
+│   └── Users
+│       └── index.js
+├── routes
+│   ├── index.js
+│   └── Route.js
+├── rules.js
+├── services
+│   ├── api.js
+│   └── socket.js
+├── stores
+│   └── useNodeStorage.js
+├── translate
+│   ├── calendar-locale.js
+│   ├── i18n.js
+│   └── languages
+│       ├── en.js
+│       ├── es.js
+│       ├── index.js
+│       └── pt.js
+└── utils
+    └── capitalize.js
+
+188 directories, 232 files
