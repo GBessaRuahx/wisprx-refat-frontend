@@ -12,3 +12,14 @@
 
 ## 2025-06-07 – 8859564da58af88ef2092a5dca1f0cdef394ab4b
 - Criação do next.config.js habilitando TypeScript e React strict mode.
+
+## 2025-06-07 – 9b4dfb37a7526f52b04f5899c42c7a679d348726
+- Criação dos componentes Button, Input, Modal e TableRowSkeleton em Tailwind e atualização do inventário.
+
+## 2025-06-07 – ddd99913a870028f06d08f11756212af9bd9f99f
+- Remoção do arquivo duplicado tailwind.config.js em src/styles.
+
+## 2025-06-07 – 7ef2d16b8c8b7e640272bfb9b2480e5710f8c8a7
+- Adição do arquivo postcss.config.js para habilitar Tailwind.
+
+
