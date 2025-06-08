@@ -32,3 +32,5 @@
 ## 2025-06-08 – 459f597
 - Ajuste do wrapper QueryClientProvider e atualização do inventário.
 
+## 2025-06-08 – 732b8460b3677cc9bc7ba13e36b4a0380d55a1fc
+- Atualização do arquivo .eslintrc.json para usar Next.js e TypeScript.

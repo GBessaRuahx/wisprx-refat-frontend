@@ -13,25 +13,13 @@
       "jsx": true
     }
   },
-  "settings": {
-    "react": {
-      "version": "18"
-    }
-  },
-  "plugins": [
-    "react",
-    "@typescript-eslint",
-    "react-hooks",
-    "tailwindcss"
-  ],
+  "plugins": ["@typescript-eslint", "tailwindcss"],
   "extends": [
-    "eslint:recommended",
-    "plugin:react/recommended",
-    "plugin:react-hooks/recommended",
+    "next/core-web-vitals",
     "plugin:@typescript-eslint/recommended",
     "plugin:tailwindcss/recommended",
-    "prettier",
-    "plugin:storybook/recommended"
+    "plugin:storybook/recommended",
+    "prettier"
   ],
   "rules": {}
 }
