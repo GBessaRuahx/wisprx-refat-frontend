@@ -263,3 +263,4 @@ src/rules.js
 - [x] src/translate/languages/index.js -> frontend-refactor/src/shared/i18n/languages/index.ts
 - [x] src/translate/languages/pt.js -> frontend-refactor/src/shared/i18n/languages/pt.ts
 - [x] src/utils/capitalize.js -> frontend-refactor/src/shared/utils/capitalize.ts
+- [x] novo QueryClientProvider -> frontend-refactor/src/app/providers/QueryClientProvider.tsx

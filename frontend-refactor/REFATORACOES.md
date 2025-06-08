@@ -9,3 +9,5 @@
 
 ## 2025-06-07 – 3e9c122d1d4c522bf6265a739a09358b85fa0d77
 - Instalação de shadcn-ui, tailwind-merge e Cypress no projeto base.
+## 2025-06-07 – 576b94956a7a10ce5409ebc9cce6132aea5d9016
+- Adição do QueryClientProvider e criação do arquivo _app.tsx.
