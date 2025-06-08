@@ -28,3 +28,5 @@
 
 
 
+## 2025-06-08 – 732b8460b3677cc9bc7ba13e36b4a0380d55a1fc
+- Atualização do arquivo .eslintrc.json para usar Next.js e TypeScript.
