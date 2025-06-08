@@ -191,10 +191,51 @@ Cada entrada nesse arquivo deve conter:
 - A **data**
 - O **hash do commit**
 - Um **resumo objetivo das mudanças aplicadas**
-- (Opcional) observações técnicas relevantes ou pendências
+-  observações técnicas relevantes ou pendências
 
 Manter esse histórico consolidado evita retrabalho, ajuda no onboarding e permite rastrear decisões de forma eficiente sem criar múltiplos arquivos dispersos.
 
+
+### 📌 Fluxo de Refatoração por Domínio (Ordem Recomendada)
+
+A refatoração será conduzida **por domínio funcional**, baseando-se nas pastas de `src/pages/`. Para cada domínio:
+
+1. **Varredura Detalhada**  
+   Faça uma inspeção completa no diretório da página (ex.: `src/pages/Announcements`), identificando:
+   - componentes reutilizados (`components/`, `Modal`, `Popover`, etc.)
+   - hooks usados (`hooks/`, `useAuth`, `useDebounce`, etc.)
+   - serviços consumidos (`services/`, `api.js`, etc.)
+   - contextos envolvidos (`context/`)
+   - arquivos de tradução (`translate/`)
+   - stores ou Zustand (se houver)
+   - assets e dependências externas
+
+2. **Migração Organizada**  
+   Crie a nova pasta no escopo `features/<domínio>/` com as subpastas necessárias:
+   ```
+   features/<domínio>/
+   ├── pages/
+   ├── components/
+   ├── hooks/
+   ├── services/
+   ├── forms/
+   ├── schemas/
+   └── stores/         # Se aplicável
+   ```
+   Transfira os arquivos correspondentes para suas novas localizações, ajustando todos os imports.
+
+3. **Verificação de Dependências Cruzadas**  
+   Use ferramentas como `madge` ou `depcruise` para validar se o domínio está isolado e se outros arquivos externos dependem dele.
+
+4. **Validação Funcional**  
+   Após a migração, a funcionalidade original deve permanecer **100% funcional**, com o mesmo comportamento, mas agora com arquitetura moderna (modular, reutilizável e com tecnologias atualizadas).
+
+5. **Registro de Refatoração**  
+   Atualize o `REFATORACOES.md` com a data, hash do commit e resumo técnico das mudanças.
+
+⚠️ **Importante:** Nenhuma funcionalidade do sistema original pode ser perdida. Cada migração deve preservar integralmente o comportamento atual e, preferencialmente, facilitar ajustes visuais futuros com Tailwind, shadcn/ui, Zustand e outras libs modernas.
+
+🎯 Esse processo deve se repetir para todos os domínios até a completa migração do frontend legado.
 
 ## ▶️ Execução
 

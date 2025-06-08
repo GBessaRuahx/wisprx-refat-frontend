@@ -32,8 +32,6 @@ O objetivo é obter um frontend modular, escalável e alinhado com as melhores p
 
 Cada feature (Tickets, Contacts, Campaigns, etc.) deve ser isolada em features/<domínio>/ com suas páginas, componentes, hooks, serviços e stores. Essa estratégia facilita entender dependências, evita que partes de uma funcionalidade fiquem esquecidas e permite migrar gradualmente sem quebrar o sistema.
 
-Migrar por diretório (ex.: mover todos os components/ de uma vez) tornaria difícil rastrear quais arquivos pertencem a cada domínio, além de exigir grandes refatorações simultâneas. Um método híbrido teria risco similar.
-
 Garantindo que nada seja esquecido
 
 Inventário de arquivos – Gere uma lista (por exemplo, via find frontend/src -type f) e mantenha um checklist. Cada arquivo migrado deve ser marcado ou removido do inventário.
@@ -44,60 +42,7 @@ REFATORACOES.md – Registrar no arquivo (já previsto em AGENTS.md) as features
 
 Scripts de validação – Após cada etapa, rode linter e testes (Vitest) no projeto novo para garantir que os módulos recém-migrados continuam funcionando.
 
-Marcação de legados – Enquanto um componente/hook ainda não foi migrado, documente no domínio correspondente ou crie wrappers temporários para facilitar a busca.
-
-Tarefas Iniciais
-
-1. Finalizar configuração básica do `frontend-refactor` (Next.js, Tailwind, ESLint, Prettier e Vitest).
-2. Copiar `services/api.js`, `translate/` e utilidades para `src/shared/`.
-3. Criar pasta `entities/` com tipos iniciais como `User` e `Ticket`.
-4. Montar feature `auth` com páginas, hooks e componentes dedicados.
-5. Ajustar rotas em `src/app/routes` para utilizar essas novas páginas.
-6. Reunir componentes do Dashboard em `features/dashboard/`.
-7. Iniciar migração de Tickets para `features/tickets/`, convertendo para Tailwind e shadcn/ui.
-8. Registrar cada passo no `REFATORACOES.md` e remover arquivos antigos conforme avançar.
-
-Plano tático inicial
-
-Preparação do novo projeto
-
-Finalizar a configuração básica do frontend-refactor (Next.js + Tailwind + ESLint + Prettier + Vitest), conforme package.json já criado.
-
-Migrar camadas compartilhadas
-
-Copiar e adaptar services/api.js, translate/ e utilidades simples para src/shared/.
-
-Criar entities/ com tipos iniciais em TypeScript (ex.: User, Ticket).
-
-Migrar o domínio de Autenticação (pequeno e essencial)
-
-Criar features/auth/ contendo:
-
-páginas (Login, Signup, ForgetPassword),
-
-hooks (useAuth),
-
-componentes específicos.
-
-Ajustar rotas em src/app/routes para apontar para essas novas páginas.
-
-Migrar Dashboard
-
-Reunir componentes e hooks usados apenas nessa área em features/dashboard/.
-
-Migrar Tickets (maior e mais complexo)
-
-Reunir páginas Tickets, Chat, TicketResponsiveContainer e todos os componentes/hook relacionados.
-
-Converter gradualmente para Tailwind e shadcn/ui, removendo dependências do MUI.
-
-Migrar demais domínios (Contacts, Campaigns, QuickMessages...)
-
-Repetir o processo: mover arquivos, ajustar importações, substituir Material‑UI.
-
 Limpeza contínua
-
-A cada domínio migrado, renomear arquivos antigos do diretório frontend/ para garantir que nao sera feito novamente. eliminar duplicidades (*.old, *.bkp).
 
 Usar o arquivo frontend/inventario-frontend-original.txt para guiar o que ja foi feito, e no fim de cada refatoraçao, atualizar o arquivo marcando como feito o item na lista.
 
@@ -248,39 +193,80 @@ src/
 
 ## 🛠️ Ferramentas
 
-Antes de iniciar a refatoração de qualquer feature, é obrigatório garantir que as ferramentas essenciais estejam corretamente configuradas na base do projeto. Isso inclui:
-
-- Configuração do Storybook (inicializado e funcional)
-- Criação do arquivo `.storybook/preview.ts` com providers globais e tema
-- Setup do ESLint + Prettier com regras compartilhadas
-- Arquivo `tsconfig.json` com aliases e paths
-- Estrutura de testes com `Vitest` e configuração de `setupTests.ts`
-- Tailwind CSS pronto com `tailwind.config.js` e `globals.css`
-- Dependências instaladas conforme definido em `ferramentas.md`
-
-Essas configurações devem estar prontas antes de começar qualquer refatoração para evitar retrabalho e garantir consistência nos arquivos migrados.
-
-As bibliotecas e ferramentas adotadas para a refatoração estão documentadas no arquivo `ferramentas.md`. Ele define o conjunto oficial de tecnologias, substituindo as versões legadas listadas no `package.json` atual.
-
-Toda refatoração deve seguir as recomendações definidas ali (ex.: uso de Zustand para estado, Zod para validação, shadcn/ui para UI, etc.), garantindo consistência técnica entre as features.
-
-## 📌 Observações sobre Segurança e Atualização
-
-Durante o processo de refatoração, um `npm audit` foi executado no frontend original e revelou **centenas de vulnerabilidades críticas e altas**, a maioria herdada do uso do Create React App (`react-scripts`) e bibliotecas relacionadas (`postcss`, `webpack`, `babel`, `jest`, etc).
-
-Como parte do processo de refatoração, **todas as dependências abaixo devem ser substituídas** ou atualizadas por equivalentes modernas já listadas nas tabelas acima:
-
-- `react-scripts` → substituído por **Vite**
-- `jest` → substituído por **Vitest**
-- `postcss`, `webpack`, `css-loader`, etc. → eliminados com Tailwind + Vite
-- `axios@<1.9.0` → atualizado para versão segura (1.9+)
-- `xlsx` → revisar versão ou substituir (sem correção conhecida)
-- `babel` → modernizar com Vite/Babel minimalista, evitar presets herdados
-
-📌 **Recomenda-se NÃO reaproveitar a árvore de dependências antiga.** A refatoração deve partir de uma base limpa (`pnpm init`, `vite`, etc.), e os pacotes devem ser instalados conforme definidos neste arquivo de ferramentas.
-
-👉 Este arquivo deve ser atualizado sempre que houver substituições críticas para que a documentação e a prática sigam alinhadas.
+Ferramentas como Tailwind, Vitest, Storybook e ESLint devem estar configuradas conforme `ferramentas.md`.
 
 ## 🗂️ Documentação de Refatorações
 
+
+## 🧩 Gerenciamento de Imports e Aliases
+
+Para garantir a integridade das refatorações, todo código migrado deve seguir as regras abaixo:
+
+1. **Verifique e atualize todos os `import` após mover ou renomear um arquivo**:
+   - Utilize busca global por `import` para localizar referências antigas.
+   - Atualize todas para o novo caminho relativo ou alias correspondente.
+
+2. **Prefira utilizar aliases consistentes em vez de caminhos relativos longos**:
+   - Exemplo: `@features/auth/hooks/useLogin` em vez de `../../../hooks/useLogin`
+
+3. **Certifique-se de que os aliases estão corretamente configurados**:
+   - `tsconfig.json` deve conter:
+     ```json
+     {
+       "compilerOptions": {
+         "baseUrl": "./src",
+         "paths": {
+           "@features/*": ["features/*"],
+           "@ui/*": ["ui/*"],
+           "@shared/*": ["shared/*"],
+           "@entities/*": ["entities/*"],
+           "@app/*": ["app/*"]
+         }
+       }
+     }
+     ```
+   - Se estiver usando Vite, inclua o mesmo mapeamento em `vite.config.ts`:
+     ```ts
+     resolve: {
+       alias: {
+         "@features": path.resolve(__dirname, "src/features"),
+         "@ui": path.resolve(__dirname, "src/ui"),
+         "@shared": path.resolve(__dirname, "src/shared"),
+         "@entities": path.resolve(__dirname, "src/entities"),
+         "@app": path.resolve(__dirname, "src/app"),
+       },
+     }
+     ```
+
+4. **Após qualquer refatoração**, rode:
+   - `tsc --noEmit`
+   - `vite build`
+   - `npm run lint`
+   - `npm run test`
+   Para validar a resolução correta dos imports e detectar quebras.
+
+5. **Nunca importe arquivos antigos ou duplicados se uma versão já foi refatorada.**
+
+Este cuidado é essencial para manter a coesão do projeto durante a transição.
+
+
 Toda refatoração realizada deve ser registrada no arquivo único `REFATORACOES.md`, localizado na raiz do diretório `frontend-refactor/`.
+
+
+### 🔄 Estratégia de Refatoração por Feature
+
+O processo de refatoração seguirá o padrão:
+
+1. Escolher uma feature com base em `src/pages/<FeatureName>/`
+2. Fazer varredura completa da pasta original:
+   - Identificar todos os arquivos diretos da página
+   - Rastrear todos os elementos usados: components, modals, hooks, services, stores, utils, i18n, etc
+   - Verificar dependências cruzadas e rotas associadas
+3. Migrar essa feature para `src/features/<FeatureName>/` com subpastas adequadas (`pages`, `components`, `hooks`, etc)
+4. Converter os componentes para Tailwind e shadcn/ui mantendo 100% do comportamento visual
+5. Substituir todos os imports antigos no projeto por imports da nova estrutura
+6. Validar funcionalidade manualmente e via testes
+7. Marcar os arquivos migrados no `inventario-frontend-original.txt`
+8. Registrar no `REFATORACOES.md` a hash do commit, data e arquivos migrados
+
+✅ Nenhuma funcionalidade pode ser perdida na migração. Tudo que existe visual e logicamente no frontend original deve estar no novo. Não pode quebrar rotas, telas ou comportamento.

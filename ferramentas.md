@@ -1,91 +1,127 @@
-## **🧱 UI e Componentização**
+## 🎯 Objetivo
 
-| **Função**          | **Atualmente**          | **Opções Disponíveis**                     | **Recomendado**  | **Avaliação**                                      |
-| ------------------- | ----------------------- | ------------------------------------------ | ---------------- | -------------------------------------------------- |
-| **Biblioteca UI**   | Material UI             | shadcn/ui, Radix UI, Material UI           | **shadcn/ui**    | ⭐⭐⭐⭐⭐ moderno, leve, acessível, com Radix embutido |
-| **Ícones**          | Material Icons (MUI)    | lucide-react, phosphor-react, MUI Icons    | **lucide-react** | ⭐⭐⭐⭐⭐ minimalista e otimizado para Tailwind        |
-| **Classes CSS**     | CSS + Styled Components | clsx, classnames, nativo                   | **clsx**         | ⭐⭐⭐⭐ simples e ideal com Tailwind                  |
-| **Temas & Estilos** | Theme MUI + CSS         | Tailwind CSS, styled-components, CSS-in-JS | **Tailwind CSS** | ⭐⭐⭐⭐⭐ robusto, utilitário e pronto para escalar    |
+Este documento define todas as decisões técnicas da refatoração do frontend WisprX.
 
-## **⚙️ Estado e Dados**
+⚠️ Todo código gerado por agentes (ex: Codex, GPT) **deve seguir estritamente estas diretrizes** para garantir consistência com a arquitetura planejada.
 
-| **Função**                  | **Atualmente**           | **Opções Disponíveis**            | **Recomendado**    | **Avaliação**                                         |
-| --------------------------- | ------------------------ | --------------------------------- | ------------------ | ----------------------------------------------------- |
-| **Gerenciamento de Estado** | Context API + useReducer | Zustand, Redux, Context API       | **Zustand**        | ⭐⭐⭐⭐⭐ menos boilerplate, escalável, simples           |
-| **Dados assíncronos**       | Axios manual             | TanStack Query, SWR, Axios direto | **TanStack Query** | ⭐⭐⭐⭐⭐ cache inteligente, refetch automático           |
-| **HTTP Client**             | Axios                    | axios, fetch, ky, graphql-request | **axios**          | ⭐⭐⭐⭐ já usado, confiável, compatível com interceptors |
-| **Zustand Store Layer**     | N/A                    | stores/ por domínio                   | **stores/**           | ⭐⭐⭐⭐ clareza e organização no estado global     |
+Cada item abaixo representa uma escolha validada que substitui a tecnologia anterior.
 
-## **🧩 Arquitetura e DX**
+## 🧱 UI e Componentização
 
-| **Função**             | **Atualmente**                    | **Opções Disponíveis**               | **Recomendado**     | **Avaliação**                             |
-| ---------------------- | --------------------------------- | ------------------------------------ | ------------------- | ----------------------------------------- |
-| **Componentização UI** | componentes soltos em components/ | ui/ + Storybook, atomic, sem padrão  | **ui/ + Storybook** | ⭐⭐⭐⭐⭐ clareza, documentação, DRY real     |
-| **Forms**              | Forms manuais com useState        | React Hook Form, Formik, HTML nativo | **React Hook Form** | ⭐⭐⭐⭐ melhor DX e integração com Zod       |
-| **Validação**          | Nada ou manual                    | Zod, Yup, Joi                        | **Zod**             | ⭐⭐⭐⭐⭐ type-safe, leve, compatível com RHF |
-| **Aliases de import**  | imports relativos ../../../       | tsconfig.paths, vite.config, webpack | **tsconfig.paths**  | ⭐⭐⭐⭐ mais legível, menos bugs de import   |
-| **Forms por domínio**       | centralizado ou misto  | forms/ dentro de cada feature         | **forms/**            | ⭐⭐⭐ clareza de contexto e reutilização parcial  |
+- Biblioteca UI: usar `shadcn/ui`
+  - Substitui: Material UI
+  - Justificativa: moderno, leve, acessível, baseado em Radix UI
+- Ícones: usar `lucide-react`
+  - Substitui: Material Icons (MUI)
+  - Justificativa: minimalista e otimizado para Tailwind
+- Composição de classes CSS: usar `clsx`
+  - Substitui: CSS + Styled Components
+  - Justificativa: simples e ideal com Tailwind
+- Temas e estilos globais: usar `Tailwind CSS`
+  - Substitui: Theme MUI + CSS
+  - Justificativa: robusto, utilitário e pronto para escalar
 
-## **🌍 Internacionalização e Acessibilidade**
+## ⚙️ Estado e Dados
 
-| **Função**         | **Atualmente**    | **Opções Disponíveis** | **Recomendado** | **Avaliação**             |
-| ------------------ | ----------------- | ---------------------- | --------------- | ------------------------- |
-| **i18n**           | i18next           | i18next, react-i18n    | **i18next**     | ⭐⭐⭐⭐ robusto, já adotado  |
-| **Acessibilidade** | parcial (via MUI) | Radix UI, manual       | **Radix UI**    | ⭐⭐⭐⭐⭐ embutido via shadcn |
+- Gerenciamento de estado: usar `Zustand`
+  - Substitui: Context API + useReducer
+  - Justificativa: menos boilerplate, escalável, simples
+- Dados assíncronos: usar `TanStack Query`
+  - Substitui: Axios manual
+  - Justificativa: cache inteligente, refetch automático
+- HTTP Client: usar `axios`
+  - Substitui: axios, fetch, ky, graphql-request
+  - Justificativa: já usado, confiável, compatível com interceptors
+- Armazenamento global: organizar por domínio em `stores/`
+  - Substitui: N/A
+  - Justificativa: clareza e organização no estado global
 
-## **🧪 Testes**
+## 🧩 Arquitetura e DX
 
-| **Função**    | **Atualmente** | **Opções Disponíveis**              | **Recomendado**  | **Avaliação**                   |
-| ------------- | -------------- | ----------------------------------- | ---------------- | ------------------------------- |
-| **Unitários** | Nenhum padrão  | Jest, Vitest, React Testing Library | **Vitest + RTL** | ⭐⭐⭐⭐ rápido, moderno, ótimo DX  |
-| **E2E**       | Nenhum         | Cypress, Playwright                 | **Cypress**      | ⭐⭐⭐⭐ ideal pra SPAs como Wisprx |
+- Componentização UI: usar `ui/ + Storybook`
+  - Substitui: componentes soltos em components/
+  - Justificativa: clareza, documentação, DRY real
+- Forms: usar `React Hook Form`
+  - Substitui: Forms manuais com useState
+  - Justificativa: melhor DX e integração com Zod
+- Validação: usar `Zod`
+  - Substitui: Nada ou manual
+  - Justificativa: type-safe, leve, compatível com React Hook Form
+- Aliases de importação: usar `tsconfig.paths`
+  - Substitui: imports relativos ../../../
+  - Justificativa: mais legível, menos bugs de import
+- Forms por domínio: organizar em `forms/` dentro de cada feature
+  - Substitui: centralizado ou misto
+  - Justificativa: clareza de contexto e reutilização parcial
 
-## **🔥 Extras úteis**
+## 🌍 Internacionalização e Acessibilidade
 
-| **Função**             | **Atualmente** | **Opções Disponíveis**              | **Recomendado**    | **Avaliação**                             |
-| ---------------------- | -------------- | ----------------------------------- | ------------------ | ----------------------------------------- |
-| **Playground de UI**   | Nenhum         | Storybook, Plasmic, React Live      | **Storybook**      | ⭐⭐⭐⭐ ideal com ui/, isolado e documentado |
-| **Devtools de estado** | N/A            | Zustand devtools, TanStack Devtools | **ambos ativados** | ⭐⭐⭐⭐ ajuda muito no debug                 |
+- i18n: usar `i18next`
+  - Substitui: i18next, react-i18n
+  - Justificativa: robusto, já adotado
+- Acessibilidade: usar `Radix UI`
+  - Substitui: parcial (via MUI)
+  - Justificativa: embutido via shadcn
 
-## **📊 Visualização e UI interativa**
+## 🧪 Testes
 
-| **Função**             | **Atualmente**                    | **Opções Disponíveis**        | **Recomendado** | **Avaliação**                                    |
-| ---------------------- | --------------------------------- | ----------------------------- | --------------- | ------------------------------------------------ |
-| **Gráficos**           | chart.js + react-chartjs-2        | Recharts, chart.js, Victory   | **Recharts**    | ⭐⭐⭐⭐ simples, declarativo, ideal para dashboards |
-| **Fluxogramas/Kanban** | react-trello, react-flow-renderer | React Flow, React DnD, custom | **React Flow**  | ⭐⭐⭐⭐ moderno, versátil, integra bem com Zustand  |
-| **CSV e Exportação**   | react-csv                         | xlsx, react-csv, papaparse    | **xlsx**        | ⭐⭐⭐⭐ robusto, exporta Excel, CSV e +             |
+- Testes unitários: usar `Vitest + React Testing Library`
+  - Substitui: Nenhum padrão
+  - Justificativa: rápido, moderno, ótimo DX
+- Testes E2E: usar `Cypress`
+  - Substitui: Nenhum
+  - Justificativa: ideal para SPAs como Wisprx
 
+## 🔥 Extras úteis
+
+- Playground de UI: usar `Storybook`
+  - Substitui: Nenhum
+  - Justificativa: ideal com ui/, isolado e documentado
+- Devtools de estado: usar `Zustand devtools` e `TanStack Devtools` ambos ativados
+  - Substitui: N/A
+  - Justificativa: ajuda muito no debug
+
+## 📊 Visualização e UI interativa
+
+- Gráficos: usar `Recharts`
+  - Substitui: chart.js + react-chartjs-2
+  - Justificativa: simples, declarativo, ideal para dashboards
+- Fluxogramas/Kanban: usar `React Flow`
+  - Substitui: react-trello, react-flow-renderer
+  - Justificativa: moderno, versátil, integra bem com Zustand
+- CSV e Exportação: usar `xlsx`
+  - Substitui: react-csv
+  - Justificativa: robusto, exporta Excel, CSV e mais
 
 ## 🧬 Tipagem e Modelagem
 
-| **Função**         | **Atualmente** | **Opções Disponíveis**     | **Recomendado** | **Avaliação**                                  |
-| ------------------ | -------------- | -------------------------- | --------------- | ---------------------------------------------- |
-| **Modelagem de Tipos** | parcial via JS | TypeScript + Zod, JS puro | **TypeScript + Zod** | ⭐⭐⭐⭐⭐ seguro, validado, compartilhável entre front/back |
-| **Schemas por Domínio** | ausente         | schemas/ por feature       | **schemas/**    | ⭐⭐⭐⭐ organiza validações por contexto funcional |
-| **Entidades Compartilhadas** | entities/ parcial | entities/, types/          | **entities/**   | ⭐⭐⭐⭐ centraliza interfaces e integração API     |
+- Modelagem de tipos: usar `TypeScript + Zod`
+  - Substitui: parcial via JS
+  - Justificativa: seguro, validado, compartilhável entre front/back
+- Schemas por domínio: organizar em `schemas/` por feature
+  - Substitui: ausente
+  - Justificativa: organiza validações por contexto funcional
+- Entidades compartilhadas: organizar em `entities/`
+  - Substitui: entities/ parcial, types/
+  - Justificativa: centraliza interfaces e integração API
 
 ## 📱 Responsividade e Layout
 
-| **Função**          | **Atualmente**    | **Opções Disponíveis**                   | **Recomendado**        | **Avaliação**                                  |
-| ------------------- | ----------------- | ---------------------------------------- | ---------------------- | ---------------------------------------------- |
-| **Responsividade**  | via MUI breakpoints | Tailwind breakpoints, custom hooks       | **Tailwind + clsx**    | ⭐⭐⭐⭐ leve, sem dependência externa              |
-| **Adaptador de Layout** | ausente        | useMediaQuery, layout wrappers, clsx     | **ui/LayoutResponsive**| ⭐⭐⭐ ajuda para visões mobile/desktop separadas  |
+- Responsividade: usar `Tailwind + clsx`
+  - Substitui: via MUI breakpoints
+  - Justificativa: leve, sem dependência externa
+- Adaptador de Layout: usar `ui/LayoutResponsive`
+  - Substitui: ausente
+  - Justificativa: ajuda para visões mobile/desktop separadas
 
----
+## 📌 Segurança e Dependências
 
-## 📌 Observações sobre Segurança e Atualização
-
-Durante o processo de refatoração, um `npm audit` foi executado no frontend original e revelou **centenas de vulnerabilidades críticas e altas**, a maioria herdada do uso do Create React App (`react-scripts`) e bibliotecas relacionadas (`postcss`, `webpack`, `babel`, `jest`, etc).
-
-Como parte do processo de refatoração, **todas as dependências abaixo devem ser substituídas** ou atualizadas por equivalentes modernas já listadas nas tabelas acima:
-
-- `react-scripts` → substituído por **Vite**
-- `jest` → substituído por **Vitest**
-- `postcss`, `webpack`, `css-loader`, etc. → eliminados com Tailwind + Vite
-- `axios@<1.9.0` → atualizado para versão segura (1.9+)
-- `xlsx` → revisar versão ou substituir (sem correção conhecida)
-- `babel` → modernizar com Vite/Babel minimalista, evitar presets herdados
-
-📌 **Recomenda-se NÃO reaproveitar a árvore de dependências antiga.** A refatoração deve partir de uma base limpa (`pnpm init`, `vite`, etc.), e os pacotes devem ser instalados conforme definidos neste arquivo de ferramentas.
-
-👉 Este arquivo deve ser atualizado sempre que houver substituições críticas para que a documentação e a prática sigam alinhadas.
+- O frontend original contém centenas de vulnerabilidades herdadas do Create React App (`react-scripts`)
+- A nova base usa `Vite`, `Vitest`, `Tailwind`, e `Zustand` para garantir segurança e modernidade
+- As seguintes dependências estão proibidas na refatoração:
+  - `react-scripts`
+  - `jest`
+  - `webpack`, `postcss`, `babel` herdado
+  - `axios < 1.9.0`
+  - `xlsx` com CVEs não resolvidos
+- O projeto refatorado deve ser iniciado limpo (`pnpm init`) e seguir os padrões definidos neste arquivo

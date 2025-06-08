@@ -12,3 +12,6 @@ logs/
 # Environment files
 *.env
 
+
+*storybook.log
+storybook-static
