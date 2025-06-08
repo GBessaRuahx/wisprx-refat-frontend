@@ -3,10 +3,11 @@ import '../src/styles/globals.css';
 import { I18nextProvider } from 'react-i18next';
 import { i18n } from '../src/shared/i18n/i18n';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
-import React, { useState } from 'react';
+import React from 'react';
+
+const queryClient = new QueryClient();
 
 const withProviders: Decorator = (Story) => {
-  const [queryClient] = useState(() => new QueryClient());
   return (
     <I18nextProvider i18n={i18n}>
       <QueryClientProvider client={queryClient}>
