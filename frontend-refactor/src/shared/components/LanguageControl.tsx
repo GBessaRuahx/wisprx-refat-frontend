@@ -39,7 +39,6 @@ export default function LanguageControl() {
       </legend>
       <div
         className="flex space-x-4"
-        onChange={handleLanguageChange}
       >
         {options.map(option => (
           <label key={option.value} className="flex items-center space-x-1">
