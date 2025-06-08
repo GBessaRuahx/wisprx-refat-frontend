@@ -10,6 +10,9 @@
 ## 2025-06-07 – 3e9c122d1d4c522bf6265a739a09358b85fa0d77
 - Instalação de shadcn-ui, tailwind-merge e Cypress no projeto base.
 
+## 2025-06-07 – 8859564da58af88ef2092a5dca1f0cdef394ab4b
+- Criação do next.config.js habilitando TypeScript e React strict mode.
+
 ## 2025-06-07 – 9b4dfb37a7526f52b04f5899c42c7a679d348726
 - Criação dos componentes Button, Input, Modal e TableRowSkeleton em Tailwind e atualização do inventário.
 
@@ -18,4 +21,5 @@
 
 ## 2025-06-07 – 7ef2d16b8c8b7e640272bfb9b2480e5710f8c8a7
 - Adição do arquivo postcss.config.js para habilitar Tailwind.
+
 
