@@ -36,3 +36,5 @@
 - Atualização do arquivo .eslintrc.json para usar Next.js e TypeScript.
 ## 2025-06-08 – b6e9ca90082cce04f8da829824c92dd53adcc6a1
 - Move logo.png para shared/assets e ajuste de traduções de login.
+## 2025-06-08 – bd8cd83872ef2599211c631a637855435ebc33ae
+- Migração do componente LanguageControl para TypeScript em shared.
