@@ -22,6 +22,7 @@
       "@app/*": ["app/*"],
       "@features/*": ["features/*"],
       "@shared/*": ["shared/*"],
+      "@ui": ["ui/index"],
       "@ui/*": ["ui/*"],
       "@entities/*": ["entities/*"],
       "@pages/*": ["pages/*"],
@@ -42,6 +43,7 @@
     "**/*.tsx"
   ],
   "exclude": [
-    "node_modules"
+    "node_modules",
+    "./src/shared/i18n/languages"
   ]
 }

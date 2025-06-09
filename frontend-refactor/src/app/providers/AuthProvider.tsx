@@ -1,10 +1,13 @@
+
 import React, { createContext, ReactNode, useContext } from 'react';
 import { useAuthStore } from '@features/auth/stores/useAuthStore';
 
 interface AuthContextValue {
+
   token: string | null;
   setToken: (token: string | null) => void;
 }
+
 
 const AuthContext = createContext<AuthContextValue | undefined>(undefined);
 
@@ -26,3 +29,4 @@ export function useAuthContext() {
   }
   return context;
 }
+
