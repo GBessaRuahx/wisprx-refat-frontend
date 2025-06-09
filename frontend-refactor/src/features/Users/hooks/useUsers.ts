@@ -34,9 +34,17 @@ export function useUsers(): UseUsersResult {
     staleTime: 5 * 60 * 1000,
   });
 
-  const refetchUsers = async (): Promise<User[]> => {
-    const result = await refetch();
-    return result.data?.users ?? [];
+  const refetchUsers = async (): Promise<UsersResponse> => {
+    try {
+      const result = await refetch();
+      if (!result.data) {
+        throw new Error('Failed to fetch users: No data returned');
+      }
+      return result.data;
+    } catch (err) {
+      toastError(err);
+      throw err;
+    }
   };
 
   const getUserById = (id: number): User | undefined => {
