@@ -6,4 +6,5 @@ const routes = {
 } as const;
 
 export type RouteName = keyof typeof routes;
+
 export default routes;
