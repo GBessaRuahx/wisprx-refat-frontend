@@ -66,5 +66,10 @@
 - Refatoracao do hook useTickets com React Query e Zustand.
 ## 2025-06-09 – 56aed570a840e2fe1ebce5ebac1908204e9c4a05
 - Migracao do hook useQueues para TypeScript em features/Queues.
+
+## 2025-06-09 – 7af473b
+- Migracao do hook useQuickMessages para TypeScript em features/QuickMessages.
+
 ## 2025-06-09 – 7983081
 - Migracao do hook useUsers para TypeScript em features/Users.
+
