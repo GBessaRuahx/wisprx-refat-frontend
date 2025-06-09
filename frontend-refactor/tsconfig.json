@@ -22,6 +22,7 @@
       "@app/*": ["app/*"],
       "@features/*": ["features/*"],
       "@shared/*": ["shared/*"],
+      "@ui": ["ui/index"],
       "@ui/*": ["ui/*"],
       "@entities/*": ["entities/*"],
       "@pages/*": ["pages/*"],

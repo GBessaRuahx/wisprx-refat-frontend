@@ -1,6 +1,11 @@
 import React from 'react';
 
-export default function TableRowSkeleton({ columns = 1, avatar = false }) {
+export interface TableRowSkeletonProps {
+  columns?: number;
+  avatar?: boolean;
+}
+
+export default function TableRowSkeleton({ columns = 1, avatar = false }: TableRowSkeletonProps) {
   return (
     <tr className="animate-pulse">
       {avatar && (
