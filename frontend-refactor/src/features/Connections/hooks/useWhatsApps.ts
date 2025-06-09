@@ -101,6 +101,10 @@ export function useWhatsApps(): UseWhatsAppsResult {
 
   useEffect(() => {
     const companyId = localStorage.getItem('companyId');
+    if (!companyId) {
+      console.error("Company ID is missing in localStorage.");
+      return;
+    }
     const socket = socketManager.getSocket(companyId);
 
     socket.on(`company-${companyId}-whatsapp`, (data: { action: string; whatsapp: Whatsapp; whatsappId: number }) => {
