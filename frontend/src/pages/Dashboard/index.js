@@ -27,8 +27,8 @@ import ButtonWithSpinner from "../../components/ButtonWithSpinner";
 import TableAttendantsStatus from "../../components/Dashboard/TableAttendantsStatus";
 import { isArray } from "lodash";
 
-import useDashboard from "../../hooks/useDashboard";
-import useContacts from "../../hooks/useContacts";
+import useDashboard from "@features/dashboard/hooks/useDashboard";
+import useContacts from "@features/Contacts/hooks/useContacts";
 import { ChatsUser } from "./ChartsUser"
 
 import { isEmpty } from "lodash";
