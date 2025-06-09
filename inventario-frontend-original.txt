@@ -158,6 +158,7 @@ src/context/WhatsApp/WhatsAppsContext.js
 src/errors/toastError.js
 src/helpers/contrastColor.js
 - [x] src/hooks/useAuth.js/index.js -> frontend-refactor/src/features/login/hooks/useAuth.ts
+
 - [x] src/hooks/useCompanies/index.js -> frontend-refactor/src/features/Companies/hooks/useCompanies.ts
 src/hooks/useContactListItems/index.js
 src/hooks/useContactLists/index.js
