@@ -39,7 +39,7 @@ import MainContainer from "../../components/MainContainer";
 import toastError from "../../errors/toastError";
 import { AuthContext } from "../../context/Auth/AuthContext";
 import { Can } from "../../components/Can";
-import useContactLists from "../../hooks/useContactLists";
+import useContactLists from "@features/Contacts/hooks/useContactLists";
 import { Grid } from "@material-ui/core";
 
 import planilhaExemplo from "../../assets/planilha.xlsx";

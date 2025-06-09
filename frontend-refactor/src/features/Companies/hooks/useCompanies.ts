@@ -42,6 +42,13 @@ export function useCompanies() {
     return data;
   };
 
+  const finding = async (id: number): Promise<Company> => {
+    const { data } = await api.request<Company>({
+      url: `/companies/${id}`,
+      method: 'GET',
+    });
+    return data;
+  };
   const update = async (payload: CompanyPayload & { id: number }): Promise<Company> => {
     const { data } = await api.request<Company>({
       url: `/companies/${payload.id}`,
