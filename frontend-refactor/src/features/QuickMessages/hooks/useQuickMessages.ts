@@ -38,6 +38,7 @@ export function useQuickMessages(): UseQuickMessagesResult {
 
   const save = async (data: QuickMessagePayload): Promise<QuickMessage> => {
     setLoading(true);
+    setError(null);
     try {
       const response = await api.request<QuickMessage>({
         url: '/quick-messages',
