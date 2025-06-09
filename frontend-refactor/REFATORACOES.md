@@ -44,3 +44,7 @@
 
 ## 2025-06-09 – d153922
 - Migração do hook useCompanies para TypeScript em features/Companies.
+
+## 2025-06-09 – c9ec718
+- Migração dos hooks de contatos para TypeScript em features/Contacts.
+
