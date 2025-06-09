@@ -73,3 +73,5 @@
 ## 2025-06-09 – 7983081
 - Migracao do hook useUsers para TypeScript em features/Users.
 
+## 2025-06-09 – 8ba8948c7e4e1989e25a3815d9b19f5f633db373
+- Criacao de arquivos de layout e theme vazios.
