@@ -79,8 +79,7 @@ export function useWhatsApps(): UseWhatsAppsResult {
   const [loading, setLoading] = useState(true);
   const [selectedConnection, setSelectedConnection] = useState<Whatsapp | null>(null);
 
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  const socketManager = useContext<any>(SocketContext);
+  const socketManager = useContext<SocketContextInterface>(SocketContext);
 
   const fetchConnections = async () => {
     setLoading(true);
