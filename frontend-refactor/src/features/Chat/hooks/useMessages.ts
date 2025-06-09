@@ -129,7 +129,10 @@ export function useMessages({ ticket, ticketId }: UseMessagesParams): UseMessage
     });
 
     return () => {
-      socket.disconnect();
+      if (ticket) {
+        socket.off('ready');
+      }
+      socket.off(`company-${companyId}-appMessage`);
     };
   }, [ticketId, ticket, socketManager]);
 
