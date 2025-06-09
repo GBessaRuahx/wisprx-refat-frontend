@@ -169,7 +169,7 @@ src/helpers/contrastColor.js
 - [x] src/hooks/useLocalStorage/index.js -> frontend-refactor/src/shared/hooks/useLocalStorage.ts
 - [x] src/hooks/useMessages/index.js -> frontend-refactor/src/features/Chat/hooks/useMessages.ts
 src/hooks/usePlans/index.js
-src/hooks/useQueues/index.js
+- [x] src/hooks/useQueues/index.js -> frontend-refactor/src/features/Queues/hooks/useQueues.ts
 src/hooks/useQuickMessages/index.js
 src/hooks/useQuickMessages_OLD/index.js
 - [x] src/hooks/useSettings/index.js -> frontend-refactor/src/features/Settings/hooks/useSettings.ts

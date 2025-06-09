@@ -64,3 +64,5 @@
 - Migração do hook useSettings para TypeScript em features/Settings.
 ## 2025-06-09 – acfbcb6
 - Refatoracao do hook useTickets com React Query e Zustand.
+## 2025-06-09 – 56aed570a840e2fe1ebce5ebac1908204e9c4a05
+- Migracao do hook useQueues para TypeScript em features/Queues.
