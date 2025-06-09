@@ -104,7 +104,7 @@ export function useQuickMessages(): UseQuickMessagesResult {
     } catch (err) {
       setError(err as Error);
       toastError(err);
-      return [];
+      throw err;
     } finally {
       setLoading(false);
     }
