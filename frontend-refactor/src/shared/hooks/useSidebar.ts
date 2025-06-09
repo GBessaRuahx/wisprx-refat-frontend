@@ -2,20 +2,23 @@ import { useState, useEffect } from 'react';
 
 export type DrawerVariant = 'permanent' | 'temporary';
 
+const DESKTOP_BREAKPOINT = 1200;
+const MOBILE_BREAKPOINT = 600;
+
 export function useSidebar() {
   const [open, setOpen] = useState(false);
   const [variant, setVariant] = useState<DrawerVariant>('permanent');
 
   useEffect(() => {
     if (typeof window !== 'undefined') {
-      if (window.innerWidth > 1200) setOpen(true);
-      setVariant(window.innerWidth < 600 ? 'temporary' : 'permanent');
+      if (window.innerWidth > DESKTOP_BREAKPOINT) setOpen(true);
+      setVariant(window.innerWidth < MOBILE_BREAKPOINT ? 'temporary' : 'permanent');
     }
   }, []);
 
   useEffect(() => {
     const handleResize = () => {
-      setVariant(window.innerWidth < 600 ? 'temporary' : 'permanent');
+      setVariant(window.innerWidth < MOBILE_BREAKPOINT ? 'temporary' : 'permanent');
     };
     window.addEventListener('resize', handleResize);
     return () => window.removeEventListener('resize', handleResize);
