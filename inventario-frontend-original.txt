@@ -159,15 +159,14 @@ src/errors/toastError.js
 src/helpers/contrastColor.js
 - [x] src/hooks/useAuth.js/index.js -> frontend-refactor/src/features/login/hooks/useAuth.ts
 - [x] src/hooks/useCompanies/index.js -> frontend-refactor/src/features/Companies/hooks/useCompanies.ts
-
 - [x] src/hooks/useContactListItems/index.js -> frontend-refactor/src/features/Contacts/hooks/useContactListItems.ts
 - [x] src/hooks/useContactLists/index.js -> frontend-refactor/src/features/Contacts/hooks/useContactLists.ts
 - [x] src/hooks/useContacts/index.js -> frontend-refactor/src/features/Contacts/hooks/useContacts.ts
 - [x] src/hooks/useDashboard/index.js -> frontend-refactor/src/features/dashboard/hooks/useDashboard.ts
 - [x] src/hooks/useDate/index.js -> frontend-refactor/src/shared/hooks/useDate.ts
-src/hooks/useHelps/index.js
-src/hooks/useInvoices/index.js
-src/hooks/useLocalStorage/index.js
+- [x] src/hooks/useHelps/index.js -> frontend-refactor/src/features/Helps/hooks/useHelps.ts
+- [x] src/hooks/useInvoices/index.js -> frontend-refactor/src/features/Financeiro/hooks/useInvoices.ts
+- [x] src/hooks/useLocalStorage/index.js -> frontend-refactor/src/shared/hooks/useLocalStorage.ts
 src/hooks/useMessages/index.js
 src/hooks/usePlans/index.js
 src/hooks/useQueues/index.js

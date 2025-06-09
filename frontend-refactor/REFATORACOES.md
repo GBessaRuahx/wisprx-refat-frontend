@@ -48,3 +48,6 @@
 ## 2025-06-09 – c9ec718
 - Migração dos hooks de contatos para TypeScript em features/Contacts.
 
+## 2025-06-09 – 65b5aa4
+- Migração dos hooks useHelps, useInvoices e useLocalStorage para TypeScript e nova estrutura modular.
+

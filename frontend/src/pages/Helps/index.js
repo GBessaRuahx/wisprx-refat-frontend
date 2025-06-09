@@ -5,7 +5,7 @@ import MainHeader from "../../components/MainHeader";
 import MainHeaderButtonsWrapper from "../../components/MainHeaderButtonsWrapper";
 import Title from "../../components/Title";
 import { i18n } from "../../translate/i18n";
-import useHelps from "../../hooks/useHelps";
+import useHelps from "@features/Helps/hooks/useHelps";
 
 const useStyles = makeStyles(theme => ({
   mainPaperContainer: {

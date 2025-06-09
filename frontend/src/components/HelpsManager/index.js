@@ -18,7 +18,7 @@ import ConfirmationModal from "../ConfirmationModal";
 import { Edit as EditIcon } from "@material-ui/icons";
 
 import { toast } from "react-toastify";
-import useHelps from "../../hooks/useHelps";
+import useHelps from "@features/Helps/hooks/useHelps";
 import { i18n } from "../../translate/i18n";
 
 

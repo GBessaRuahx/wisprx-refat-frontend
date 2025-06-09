@@ -26,7 +26,7 @@ import api from "../../services/api";
 import RecordingTimer from "./RecordingTimer";
 import { ReplyMessageContext } from "../../context/ReplyingMessage/ReplyingMessageContext";
 import { AuthContext } from "../../context/Auth/AuthContext";
-import { useLocalStorage } from "../../hooks/useLocalStorage";
+import { useLocalStorage } from "@shared/hooks/useLocalStorage";
 import toastError from "../../errors/toastError";
 
 const Mp3Recorder = new MicRecorder({ bitRate: 128 });
