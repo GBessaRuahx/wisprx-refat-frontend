@@ -159,6 +159,7 @@ src/errors/toastError.js
 src/helpers/contrastColor.js
 - [x] src/hooks/useAuth.js/index.js -> frontend-refactor/src/features/login/hooks/useAuth.ts
 - [x] src/hooks/useCompanies/index.js -> frontend-refactor/src/features/Companies/hooks/useCompanies.ts
+
 - [x] src/hooks/useContactListItems/index.js -> frontend-refactor/src/features/Contacts/hooks/useContactListItems.ts
 - [x] src/hooks/useContactLists/index.js -> frontend-refactor/src/features/Contacts/hooks/useContactLists.ts
 - [x] src/hooks/useContacts/index.js -> frontend-refactor/src/features/Contacts/hooks/useContacts.ts
