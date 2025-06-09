@@ -41,3 +41,6 @@
 
 ## 2025-06-09 – d9b5d2c
 - Migração dos hooks useAuth, useDashboard e useDate para TypeScript e nova estrutura modular.
+
+## 2025-06-09 – d153922
+- Migração do hook useCompanies para TypeScript em features/Companies.
