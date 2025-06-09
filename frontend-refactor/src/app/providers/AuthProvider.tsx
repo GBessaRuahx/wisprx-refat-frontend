@@ -1,34 +1,34 @@
-
 import React, { createContext, ReactNode, useContext } from 'react';
-import { useAuthStore } from '@features/auth/stores/useAuthStore';
+import useAuthHook from '@features/login/hooks/useAuth';
+import User from '@entities/User';
 
 interface AuthContextValue {
-
-  token: string | null;
-  setToken: (token: string | null) => void;
+  user: User | null;
+  isAuth: boolean;
+  loading: boolean;
+  handleLogin: (data: { email: string; password: string }) => Promise<void>;
+  handleLogout: () => Promise<void>;
 }
-
 
 const AuthContext = createContext<AuthContextValue | undefined>(undefined);
 
 export function AuthProvider({ children }: { children: ReactNode }) {
-  const token = useAuthStore(state => state.token);
-  const setToken = useAuthStore(state => state.setToken);
+  const { user, isAuth, loading, handleLogin, handleLogout } = useAuthHook();
 
   return (
-    <AuthContext.Provider value={{ token, setToken }}>
+    <AuthContext.Provider
+      value={{ user, isAuth, loading, handleLogin, handleLogout }}
+    >
       {children}
     </AuthContext.Provider>
   );
 }
 
-export function useAuthContext() {
+export function useAuth() {
   const context = useContext(AuthContext);
   if (!context) {
-    throw new Error('useAuthContext must be used within AuthProvider');
+    throw new Error('useAuth must be used within AuthProvider');
   }
   return context;
 }
-
-export const useAuth = useAuthContext;
 
