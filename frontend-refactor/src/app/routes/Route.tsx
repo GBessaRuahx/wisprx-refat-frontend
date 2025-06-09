@@ -1,4 +1,3 @@
-import React from 'react';
 import Link, { LinkProps } from 'next/link';
 import routes, { RouteName } from '@app/routes';
 import { ReactNode } from 'react';
