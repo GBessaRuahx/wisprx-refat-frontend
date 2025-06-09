@@ -76,7 +76,6 @@ export function useCompanies() {
     remove,
     list,
     find,
-    finding,
     findAll,
     updateSchedules,
   };
