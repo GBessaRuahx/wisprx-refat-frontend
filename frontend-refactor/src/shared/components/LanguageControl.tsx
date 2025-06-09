@@ -54,6 +54,6 @@ export default function LanguageControl() {
           </label>
         ))}
       </div>
-    </div>
+    </fieldset>
   );
 }
