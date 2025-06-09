@@ -18,7 +18,14 @@ interface SettingsState {
 export const useSettingsStore = create<SettingsState>((set, get) => ({
   settings:
     typeof window !== 'undefined'
-      ? JSON.parse(localStorage.getItem('settings') || '[]')
+      ? (() => {
+          try {
+            return JSON.parse(localStorage.getItem('settings') || '[]');
+          } catch (e) {
+            console.error('Failed to parse settings from localStorage:', e);
+            return [];
+          }
+        })()
       : [],
   loading: false,
   error: null,
