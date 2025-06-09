@@ -5,6 +5,7 @@ import Whatsapp from '@entities/Whatsapp';
 // SocketContext still resides in the legacy frontend folder
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 import { SocketContext } from '../../../../../frontend/src/context/Socket/SocketContext';
+type SocketContextInterface = any;
 
 interface WhatsappSession {
   id: number;

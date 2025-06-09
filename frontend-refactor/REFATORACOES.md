@@ -62,3 +62,5 @@
 - Migração do hook useWhatsApps para TypeScript em features/Connections.
 ## 2025-06-09 – cd7957a7c6704ff4f161f0ca4ae16a5dcc766e2c
 - Migração do hook useSettings para TypeScript em features/Settings.
+## 2025-06-09 – acfbcb6
+- Refatoracao do hook useTickets com React Query e Zustand.
