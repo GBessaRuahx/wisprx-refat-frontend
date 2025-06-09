@@ -175,7 +175,7 @@ src/hooks/useQuickMessages_OLD/index.js
 - [x] src/hooks/useSettings/index.js -> frontend-refactor/src/features/Settings/hooks/useSettings.ts
 src/hooks/useTicketNotes/index.js
 - [x] src/hooks/useTickets/index.js -> frontend-refactor/src/features/Tickets/hooks/useTickets.ts
-src/hooks/useUsers/index.js
+- [x] src/hooks/useUsers/index.js -> frontend-refactor/src/features/Users/hooks/useUsers.ts
 - [x] src/hooks/useWhatsApps/index.js -> frontend-refactor/src/features/Connections/hooks/useWhatsApps.ts
 src/index.js
 src/layout/index.js
