@@ -157,13 +157,13 @@ src/context/Tickets/TicketsContext.js
 src/context/WhatsApp/WhatsAppsContext.js
 src/errors/toastError.js
 src/helpers/contrastColor.js
-src/hooks/useAuth.js/index.js
-src/hooks/useCompanies/index.js
+- [x] src/hooks/useAuth.js/index.js -> frontend-refactor/src/features/login/hooks/useAuth.ts
+- [x] src/hooks/useCompanies/index.js -> frontend-refactor/src/features/Companies/hooks/useCompanies.ts
 src/hooks/useContactListItems/index.js
 src/hooks/useContactLists/index.js
 src/hooks/useContacts/index.js
-src/hooks/useDashboard/index.js
-src/hooks/useDate/index.js
+- [x] src/hooks/useDashboard/index.js -> frontend-refactor/src/features/dashboard/hooks/useDashboard.ts
+- [x] src/hooks/useDate/index.js -> frontend-refactor/src/shared/hooks/useDate.ts
 src/hooks/useHelps/index.js
 src/hooks/useInvoices/index.js
 src/hooks/useLocalStorage/index.js
