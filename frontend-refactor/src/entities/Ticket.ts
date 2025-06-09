@@ -6,6 +6,21 @@ export interface Ticket {
   queueId: number | null;
   contactId: number;
   companyId: number;
+  lastMessage?: string;
+  updatedAt?: string;
+  queue?: {
+    id: number;
+    name: string;
+    color?: string;
+  } | null;
+  user?: {
+    id: number;
+    name: string;
+  } | null;
+  contact?: {
+    id: number;
+    name: string;
+  } | null;
 }
 
 export default Ticket;

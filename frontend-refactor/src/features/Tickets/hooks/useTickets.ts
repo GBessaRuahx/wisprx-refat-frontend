@@ -1,13 +1,18 @@
-import { useEffect, useState } from 'react';
+import { useMemo } from 'react';
+import {
+  useInfiniteQuery,
+  useMutation,
+  useQueryClient,
+} from '@tanstack/react-query';
 import api from '@shared/services/api';
 import toastError from '@shared/utils/toastError';
 import Ticket from '@entities/Ticket';
+import useTicketsStore from '../stores/useTicketsStore';
 
-export interface UseTicketsParams {
+export interface TicketFilters {
   searchParam?: string;
   tags?: string;
   users?: string;
-  pageNumber?: number;
   status?: string;
   date?: string;
   updatedAt?: string;
@@ -16,75 +21,77 @@ export interface UseTicketsParams {
   withUnreadMessages?: string;
 }
 
-export interface UseTicketsResult {
-  tickets: Ticket[];
-  loading: boolean;
-  hasMore: boolean;
+export interface UpdateTicketPayload {
+  status?: 'open' | 'pending' | 'closed';
+  userId?: number | null;
+  queueId?: number | null;
 }
 
-export function useTickets({
-  searchParam,
-  tags,
-  users,
-  pageNumber,
-  status,
-  date,
-  updatedAt,
-  showAll,
-  queueIds,
-  withUnreadMessages,
-}: UseTicketsParams): UseTicketsResult {
-  const [loading, setLoading] = useState(true);
-  const [hasMore, setHasMore] = useState(false);
-  const [tickets, setTickets] = useState<Ticket[]>([]);
+export interface UseTicketsResult {
+  tickets: Ticket[];
+  isLoading: boolean;
+  hasMore: boolean;
+  fetchNextPage: () => Promise<void>;
+  updateTicket: (id: number, data: UpdateTicketPayload) => Promise<Ticket | void>;
+  selectedTicket: Ticket | null;
+  setSelectedTicket: (ticket: Ticket | null) => void;
+}
 
-  useEffect(() => {
-    setLoading(true);
-    const delayDebounceFn = setTimeout(() => {
-      const fetchTickets = async () => {
-        try {
-          const { data } = await api.get<{
-            tickets: Ticket[];
-            hasMore: boolean;
-          }>('/tickets', {
-            params: {
-              searchParam,
-              pageNumber,
-              tags,
-              users,
-              status,
-              date,
-              updatedAt,
-              showAll,
-              queueIds,
-              withUnreadMessages,
-            },
-          });
-          setTickets(data.tickets);
-          setHasMore(data.hasMore);
-          setLoading(false);
-        } catch (err) {
-          setLoading(false);
-          toastError(err);
-        }
-      };
-      fetchTickets();
-    }, 500);
-    return () => clearTimeout(delayDebounceFn);
-  }, [
-    searchParam,
-    tags,
-    users,
-    pageNumber,
-    status,
-    date,
-    updatedAt,
-    showAll,
-    queueIds,
-    withUnreadMessages,
-  ]);
+export function useTickets(filters: TicketFilters = {}): UseTicketsResult {
+  const queryClient = useQueryClient();
+  const { selectedTicket, setSelectedTicket } = useTicketsStore();
 
-  return { tickets, loading, hasMore };
+  const {
+    data,
+    isFetching,
+    fetchNextPage,
+  } = useInfiniteQuery<{ tickets: Ticket[]; hasMore: boolean; page: number }, Error>({
+    queryKey: ['tickets', filters],
+    queryFn: async ({ pageParam = 1 }) => {
+      const page = pageParam as number;
+      const { data } = await api.get<{ tickets: Ticket[]; hasMore: boolean }>('/tickets', {
+        params: { ...filters, pageNumber: page },
+      });
+      return { tickets: data.tickets, hasMore: data.hasMore, page: page };
+    },
+    initialPageParam: 1,
+    getNextPageParam: lastPage => (lastPage.hasMore ? lastPage.page + 1 : undefined),
+  });
+
+  const updateMutation = useMutation({
+    mutationFn: async ({ id, data }: { id: number; data: UpdateTicketPayload }) => {
+      const response = await api.put<Ticket>(`/tickets/${id}`, data);
+      return response.data;
+    },
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ['tickets'] });
+    },
+    onError: err => toastError(err),
+  });
+
+  const tickets = useMemo(() => {
+    return data?.pages.flatMap(p => p.tickets) || [];
+  }, [data]);
+
+  const hasMore = data?.pages[data.pages.length - 1]?.hasMore ?? false;
+
+  const updateTicket = async (id: number, payload: UpdateTicketPayload) => {
+    try {
+      return await updateMutation.mutateAsync({ id, data: payload });
+    } catch {
+      return undefined;
+    }
+  };
+
+  return {
+    tickets,
+    isLoading: isFetching,
+    hasMore,
+    fetchNextPage: () => fetchNextPage().then(() => undefined),
+    updateTicket,
+    selectedTicket,
+    setSelectedTicket,
+  };
 }
 
 export default useTickets;
