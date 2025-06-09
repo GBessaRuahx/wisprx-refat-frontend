@@ -176,7 +176,7 @@ src/hooks/useSettings/index.js
 src/hooks/useTicketNotes/index.js
 - [x] src/hooks/useTickets/index.js -> frontend-refactor/src/features/Tickets/hooks/useTickets.ts
 src/hooks/useUsers/index.js
-src/hooks/useWhatsApps/index.js
+- [x] src/hooks/useWhatsApps/index.js -> frontend-refactor/src/features/Connections/hooks/useWhatsApps.ts
 src/index.js
 src/layout/index.js
 src/layout/MainListItems.js

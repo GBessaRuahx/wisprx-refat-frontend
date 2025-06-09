@@ -57,3 +57,6 @@
 
 ## 2025-06-09 – 70b6816baa33e0068a27c0e5b69556ea7a483468
 - Migração do hook useMessages para TypeScript em features/Chat.
+
+## 2025-06-09 – c706542ecf2aa075cee21cef7fa4b53ec06ce6d3
+- Migração do hook useWhatsApps para TypeScript em features/Connections.
