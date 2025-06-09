@@ -38,3 +38,9 @@
 - Move logo.png para shared/assets e ajuste de traduções de login.
 ## 2025-06-08 – bd8cd83872ef2599211c631a637855435ebc33ae
 - Migração do componente LanguageControl para TypeScript em shared.
+
+## 2025-06-09 – d9b5d2c
+- Migração dos hooks useAuth, useDashboard e useDate para TypeScript e nova estrutura modular.
+
+## 2025-06-09 – d153922
+- Migração do hook useCompanies para TypeScript em features/Companies.
