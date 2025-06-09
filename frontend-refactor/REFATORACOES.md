@@ -51,3 +51,6 @@
 ## 2025-06-09 – 65b5aa4
 - Migração dos hooks useHelps, useInvoices e useLocalStorage para TypeScript e nova estrutura modular.
 
+
+## 2025-06-09 – 347dd86
+- Migracao do hook useTickets para TypeScript em features/Tickets.
