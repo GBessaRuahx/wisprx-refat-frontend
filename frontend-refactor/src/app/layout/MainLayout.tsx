@@ -1,5 +1,5 @@
 import { ReactNode } from 'react';
-import NavBar from './NavBar';
+import Navbar from './Navbar';
 
 interface Props {
   children: ReactNode;
@@ -8,7 +8,7 @@ interface Props {
 export default function MainLayout({ children }: Props) {
   return (
     <div className="min-h-screen flex flex-col">
-      <NavBar />
+      <Navbar />
       <main className="flex-1">{children}</main>
     </div>
   );
