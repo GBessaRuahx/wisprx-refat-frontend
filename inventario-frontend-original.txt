@@ -172,7 +172,7 @@ src/hooks/usePlans/index.js
 src/hooks/useQueues/index.js
 src/hooks/useQuickMessages/index.js
 src/hooks/useQuickMessages_OLD/index.js
-src/hooks/useSettings/index.js
+- [x] src/hooks/useSettings/index.js -> frontend-refactor/src/features/Settings/hooks/useSettings.ts
 src/hooks/useTicketNotes/index.js
 - [x] src/hooks/useTickets/index.js -> frontend-refactor/src/features/Tickets/hooks/useTickets.ts
 src/hooks/useUsers/index.js
