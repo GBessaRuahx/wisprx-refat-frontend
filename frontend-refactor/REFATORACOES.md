@@ -54,3 +54,6 @@
 
 ## 2025-06-09 – 347dd86
 - Migracao do hook useTickets para TypeScript em features/Tickets.
+
+## 2025-06-09 – 70b6816baa33e0068a27c0e5b69556ea7a483468
+- Migração do hook useMessages para TypeScript em features/Chat.

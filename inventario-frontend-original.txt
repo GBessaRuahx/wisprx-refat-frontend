@@ -167,7 +167,7 @@ src/helpers/contrastColor.js
 - [x] src/hooks/useHelps/index.js -> frontend-refactor/src/features/Helps/hooks/useHelps.ts
 - [x] src/hooks/useInvoices/index.js -> frontend-refactor/src/features/Financeiro/hooks/useInvoices.ts
 - [x] src/hooks/useLocalStorage/index.js -> frontend-refactor/src/shared/hooks/useLocalStorage.ts
-src/hooks/useMessages/index.js
+- [x] src/hooks/useMessages/index.js -> frontend-refactor/src/features/Chat/hooks/useMessages.ts
 src/hooks/usePlans/index.js
 src/hooks/useQueues/index.js
 src/hooks/useQuickMessages/index.js
