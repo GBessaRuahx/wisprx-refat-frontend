@@ -75,3 +75,9 @@
 
 ## 2025-06-09 – 8ba8948c7e4e1989e25a3815d9b19f5f633db373
 - Criacao de arquivos de layout e theme vazios.
+
+## 2025-06-09 – 7e8bccf
+- Refatoracao do layout index.js para LoggedInLayout com AppBar e Sidebar modularizados.
+
+## 2025-06-10 – 1731e12
+- Ajuste do App para usar ThemeProvider e remoção de import inutil.
