@@ -81,3 +81,4 @@
 
 ## 2025-06-10 – 1731e12
 - Ajuste do App para usar ThemeProvider e remoção de import inutil.
+
