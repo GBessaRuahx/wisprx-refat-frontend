@@ -78,3 +78,7 @@
 
 ## 2025-06-09 – 7e8bccf
 - Refatoracao do layout index.js para LoggedInLayout com AppBar e Sidebar modularizados.
+
+## 2025-06-10 – 1731e12
+- Ajuste do App para usar ThemeProvider e remoção de import inutil.
+

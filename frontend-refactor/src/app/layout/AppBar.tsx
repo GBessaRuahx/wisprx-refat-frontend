@@ -3,7 +3,6 @@ import { Menu, Sun, Moon, User, LogOut } from 'lucide-react';
 import LanguageControl from '@shared/components/LanguageControl';
 import { useAuth, useTheme } from '@app/providers';
 import useSidebar from '@shared/hooks/useSidebar';
-import clsx from 'clsx';
 
 export default function AppBar() {
   const { toggle } = useSidebar();
