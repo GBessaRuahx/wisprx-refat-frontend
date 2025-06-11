@@ -10,7 +10,8 @@ src/features/<domínio>/
 ├── services/     # APIs e integração com backend
 ├── forms/        # Lógica de formulários com React Hook Form
 ├── schemas/      # Validações com Zod
-└── stores/       # Estado local com Zustand
+├── stores/       # Estado local com Zustand
+└── index.ts
 ```
 ⚠️ Importante: durante a refatoração, o estilo visual atual das telas e componentes deve ser mantido fiel ao original. O foco é reorganizar e modernizar o código sem alterar a aparência ou comportamento visual. As alterações devem facilitar manutenções futuras (ex.: uso de Tailwind, separação clara por feature), mas não devem resultar em mudanças perceptíveis para o usuário final neste momento.
 
@@ -46,7 +47,6 @@ Limpeza contínua
 
 Usar o arquivo frontend/inventario-frontend-original.txt para guiar o que ja foi feito, e no fim de cada refatoraçao, atualizar o arquivo marcando como feito o item na lista.
 
-Registrar tudo no REFATORACOES.md.
 
 -Testes e verificação
 
@@ -72,130 +72,266 @@ A refatoração será realizada **por feature**, sem quebrar a base original. Pa
 6. Testes com **Vitest + RTL** e documentação via **Storybook** serão incluídos.
 
 
-A estrutura deve ser criada com base na estrutura abaixo, porem pode ser alterado caso preceba durante a refaroraçao que precisa:
 
+
+```
 src/
-├── app/                      # Layouts, contextos e rotas globais
-│   ├── layout/               # Ex.: Drawer, Navbar, ThemeContext
-│   ├── providers/            # AuthProvider, SocketProvider, TicketsProvider…
-│   ├── routes/               # Definição das rotas SPA (Route.jsx, index.jsx)
-│   └── App.jsx               # Composição principal da aplicação
+├── app/
+│   ├── (auth)/                     # Rotas de autenticação
+│   │   ├── login/
+│   │   │   └── page.tsx
+│   │   ├── signup/
+│   │   │   └── page.tsx
+│   │   ├── forget-password/
+│   │   │   └── page.tsx
+│   │   └── layout.tsx              # Layout específico para auth (simples)
+│   │
+│   ├── (dashboard)/                # Rotas principais da aplicação (requer login)
+│   │   ├── dashboard/              # /dashboard
+│   │   │   └── page.tsx
+│   │   │
+│   │   ├── announcements/          # /announcements
+│   │   │   └── page.tsx
+│   │   │
+│   │   ├── campaigns/              # /campaigns
+│   │   │   ├── page.tsx            # Listagem principal
+│   │   │   ├── report/             # /campaigns/report
+│   │   │   │   └── page.tsx
+│   │   │   ├── config/             # /campaigns/config
+│   │   │   │   └── page.tsx
+│   │   │   └── phrase/             # /campaigns/phrase
+│   │   │       └── page.tsx
+│   │   │
+│   │   ├── companies/              # /companies
+│   │   │   └── page.tsx
+│   │   │
+│   │   ├── connections/            # /connections
+│   │   │   └── page.tsx
+│   │   │
+│   │   ├── contacts/               # /contacts
+│   │   │   ├── page.tsx            # Listagem principal de contatos
+│   │   │   ├── list-items/         # /contacts/list-items (ou talvez /contacts/lists/[listId]/items)
+│   │   │   │   └── page.tsx
+│   │   │   └── lists/              # /contacts/lists
+│   │   │       └── page.tsx
+│   │   │
+│   │   ├── files/                  # /files
+│   │   │   └── page.tsx
+│   │   │
+│   │   ├── financeiro/             # /financeiro
+│   │   │   └── page.tsx
+│   │   │
+│   │   ├── flow-builder/           # /flow-builder
+│   │   │   ├── page.tsx            # Editor principal do flow
+│   │   │   └── config/             # /flow-builder/config
+│   │   │       └── page.tsx
+│   │   │
+│   │   ├── helps/                  # /helps
+│   │   │   └── page.tsx
+│   │   │
+│   │   ├── kanban/                 # /kanban
+│   │   │   └── page.tsx
+│   │   │
+│   │   ├── messages-api/           # /messages-api
+│   │   │   └── page.tsx
+│   │   │
+│   │   ├── prompts/                # /prompts
+│   │   │   └── page.tsx
+│   │   │
+│   │   ├── queues/                 # /queues
+│   │   │   ├── page.tsx            # Listagem principal de filas
+│   │   │   └── integration/        # /queues/integration
+│   │   │       └── page.tsx
+│   │   │
+│   │   ├── quick-messages/         # /quick-messages
+│   │   │   └── page.tsx
+│   │   │
+│   │   ├── schedules/              # /schedules
+│   │   │   └── page.tsx
+│   │   │   // schedules.bkp parece ser algo temporário ou de backup, não uma rota de UI.
+│   │   │
+│   │   ├── settings/               # /settings
+│   │   │   ├── page.tsx            # Configurações gerais
+│   │   │   └── custom/             # /settings/custom
+│   │   │       └── page.tsx
+│   │   │
+│   │   ├── subscription/           # /subscription
+│   │   │   └── page.tsx
+│   │   │
+│   │   ├── tags/                   # /tags
+│   │   │   └── page.tsx
+│   │   │
+│   │   ├── tickets/                # /tickets
+│   │   │   ├── page.tsx            # Listagem principal
+│   │   │   ├── responsive-container/ # /tickets/responsive-container (Pode ser um layout específico ou uma variante)
+│   │   │   │   └── page.tsx
+│   │   │   ├── advanced/           # /tickets/advanced
+│   │   │   │   └── page.tsx
+│   │   │   └── custom/             # /tickets/custom
+│   │   │       └── page.tsx
+│   │   │
+│   │   ├── todo-list/              # /todo-list
+│   │   │   └── page.tsx
+│   │   │
+│   │   ├── users/                  # /users
+│   │   │   └── page.tsx
+│   │   │
+│   │   └── layout.tsx              # Layout principal do dashboard (com sidebar, header, etc.)
+│   │
+│   ├── api/                        # API Routes (Route Handlers)
+│   │   ├── auth/[...nextauth]/     # Exemplo para NextAuth
+│   │   │   └── route.ts
+│   │   └── ...                     # Outras API routes
+│   │
+│   ├── layout.tsx                  # Layout Raiz Global (<html>, <body>, providers globais)
+│   ├── page.tsx                    # Landing Page ou redirect para /login ou /dashboard
+│   └── globals.css                 # Estilos globais
 │
-├── features/                 # Cada domínio isolado em sua própria pasta
-│   ├── auth/
-│   │   ├── pages/            # Login, Signup, ForgetPassword
-│   │   ├── components/
-│   │   ├── hooks/
-│   │   ├── services/
-│   │   ├── forms/
-│   │   └── schemas/
-│   ├── dashboard/
-│   │   ├── pages/
-│   │   ├── components/
-│   │   └── hooks/
-│   ├── tickets/
-│   │   ├── pages/            # Tickets, Chat, TicketResponsiveContainer
-│   │   ├── components/
-│   │   ├── hooks/
-│   │   ├── services/
-│   │   ├── forms/
-│   │   ├── schemas/
-│   │   └── stores/           # Zustand stores, se houver
-│   ├── contacts/
-│   │   ├── pages/
-│   │   ├── components/
-│   │   ├── hooks/
-│   │   ├── services/
-│   │   ├── forms/
-│   │   └── schemas/
-│   ├── campaigns/
-│   │   ├── pages/            # Campaigns, CampaignReport, etc.
-│   │   ├── flows/            # FlowBuilder e configs
-│   │   ├── components/
-│   │   ├── hooks/
-│   │   ├── services/
-│   │   └── stores/
-│   ├── queues/
-│   │   ├── pages/
-│   │   ├── components/
-│   │   ├── hooks/
-│   │   └── services/
-│   ├── quick-messages/
-│   │   ├── pages/
-│   │   ├── components/
-│   │   ├── hooks/
-│   │   └── services/
-│   ├── users/
-│   │   ├── pages/
-│   │   ├── components/
-│   │   ├── hooks/
-│   │   └── services/
-│   ├── schedules/
-│   │   ├── pages/
-│   │   ├── components/
-│   │   ├── hooks/
-│   │   └── services/
-│   ├── tags/
-│   │   ├── pages/
-│   │   ├── components/
-│   │   ├── hooks/
-│   │   └── services/
+├── components/
+│   ├── ui/                         # Componentes de UI base (Button, Input, Card, etc. - shadcn/ui)
+│   │   ├── button.tsx
+│   │   ├── input.tsx
+│   │   └── ...
+│   └── shared/                     # Componentes de UI mais complexos, compartilhados entre features
+│       ├── page-header.tsx
+│       ├── data-table.tsx
+│       ├── sidebar.tsx
+│       ├── user-avatar.tsx
+│       └── ...
+│
+├── features/                       # Domínios de negócio / Funcionalidades principais
 │   ├── announcements/
-│   │   ├── pages/
-│   │   └── components/
+│   │   ├── components/
+│   │   ├── pages/                  # Ex: announcements-listing-page.tsx
+│   │   ├── services/
+│   │   └── types/
+│   │
+│   ├── campaigns/
+│   │   ├── components/             # Ex: campaign-card.tsx, campaign-filter.tsx
+│   │   ├── pages/                  # campaign-listing-page.tsx, campaign-report-page.tsx, etc.
+│   │   ├── services/               # campaign-service.ts
+│   │   ├── hooks/
+│   │   └── types/                  # Campaign, CampaignConfig, etc.
+│   │
+│   ├── companies/
+│   │   └── ... (estrutura similar para cada feature)
+│   │
+│   ├── connections/
+│   │   └── ...
+│   │
+│   ├── contacts/                   # Feature Contacts
+│   │   ├── components/             # contact-form.tsx, contact-list-item-display.tsx
+│   │   ├── pages/                  # contacts-page.tsx, contact-lists-page.tsx, contact-list-items-page.tsx
+│   │   ├── services/
+│   │   ├── hooks/
+│   │   └── types/                  # Contact, ContactList, etc.
+│   │
 │   ├── files/
-│   │   ├── pages/
-│   │   └── components/
-│   ├── helps/
-│   │   ├── pages/
-│   │   └── components/
-│   ├── subscription/
-│   │   ├── pages/
-│   │   └── components/
-│   ├── finance/
-│   │   ├── pages/
-│   │   └── components/
-│   ├── prompts/
-│   │   ├── pages/
-│   │   └── components/
-│   └── todolist/
-│       ├── pages/
-│       └── components/
+│   │   └── ...
+│   │
+│   ├── finance/                    # Renomeado de "Financeiro" para "finance" (inglês é comum)
+│   │   └── ...
+│   │
+│   ├── flow-builder/
+│   │   ├── components/             # node-editor.tsx, flow-canvas.tsx
+│   │   ├── pages/                  # flow-builder-editor-page.tsx, flow-config-page.tsx
+│   │   ├── services/
+│   │   ├── store/                  # Para estado complexo do editor (Zustand, Jotai)
+│   │   └── types/
+│   │
+│   ├── help-center/                # Renomeado de "Helps"
+│   │   └── ...
+│   │
+│   ├── kanban-board/               # Renomeado de "Kanban"
+│   │   └── ...
+│   │
+│   ├── messages-api-config/        # Renomeado de "MessagesAPI"
+│   │   └── ...
+│   │
+│   ├── prompts-management/         # Renomeado de "Prompts"
+│   │   └── ...
+│   │
+│   ├── queues-management/          # Renomeado de "Queues"
+│   │   ├── components/
+│   │   ├── pages/                  # queues-listing-page.tsx, queue-integration-page.tsx
+│   │   ├── services/
+│   │   └── types/
+│   │
+│   ├── quick-messages-templates/   # Renomeado de "QuickMessages"
+│   │   └── ...
+│   │
+│   ├── scheduling/                 # Renomeado de "Schedules"
+│   │   └── ...
+│   │
+│   ├── settings/                   # Feature Settings (pode ser mais granular se muito complexa)
+│   │   ├── components/
+│   │   ├── pages/                  # general-settings-page.tsx, custom-settings-page.tsx
+│   │   ├── services/
+│   │   └── types/
+│   │
+│   ├── subscription-management/    # Renomeado de "Subscription"
+│   │   └── ...
+│   │
+│   ├── tag-management/             # Renomeado de "Tags"
+│   │   └── ...
+│   │
+│   ├── tickets-support/            # Renomeado de "Tickets"
+│   │   ├── components/             # ticket-detail-view.tsx, ticket-filter-bar.tsx
+│   │   ├── pages/                  # tickets-listing-page.tsx, ticket-advanced-view-page.tsx, etc.
+│   │   ├── services/
+│   │   ├── hooks/
+│   │   └── types/
+│   │
+│   ├── todo-list/
+│   │   └── ...
+│   │
+│   ├── user-management/            # Renomeado de "Users"
+│   │   ├── components/
+│   │   ├── pages/                  # user-list-page.tsx, user-profile-page.tsx (se aplicável)
+│   │   ├── services/
+│   │   └── types/
+│   │
+│   └── index.ts                    # Pode reexportar tipos comuns ou utilitários das features, se necessário
 │
-├── ui/                       # Componentes visuais reutilizáveis
-│   ├── Button.jsx
-│   ├── Modal.jsx
-│   ├── Input.jsx
-│   ├── TableRowSkeleton.jsx
-│   └── …
+├── lib/                            # Utilitários, lógica e hooks globais (anteriormente `shared/`)
+│   ├── api.ts                      # Configuração do cliente de API (ex: Axios, ou wrapper do fetch)
+│   ├── auth.ts                     # Funções e configurações de autenticação (ex: helpers do NextAuth)
+│   ├── constants.ts                # Constantes globais
+│   ├── hooks/                      # Hooks reutilizáveis e agnósticos de feature
+│   │   ├── use-local-storage.ts
+│   │   ├── use-media-query.ts
+│   │   └── ...
+│   ├── utils.ts                    # Funções utilitárias puras (cn, formatDate, etc.)
+│   └── ...
 │
-├── shared/                   # Hooks e utilidades genéricas
-│   ├── hooks/                # useLocalStorage, useDebounce...
-│   ├── services/             # api.js, socket.js
-│   ├── utils/                # helpers e funções de apoio
-│   ├── errors/               # toastError etc.
-│   └── i18n/                 # i18n.js, calendar-locale.js, languages/
+├── providers/                      # Providers de Contexto globais
+│   ├── theme-provider.tsx
+│   ├── auth-provider.tsx           # Se não estiver usando NextAuth com seu próprio provider
+│   ├── query-client-provider.tsx   # Para React Query / TanStack Query
+│   └── ...
 │
-├── entities/                 # Modelos e tipos globais
-│   ├── User.ts
-│   ├── Ticket.ts
-│   └── …
+├── public/                         # Assets estáticos públicos (favicon.ico, images, etc.)
 │
-├── pages/                    # Entrada SPA (ponto de montagem das rotas)
-│   └── index.tsx
+├── styles/                         # Se você tiver mais do que globals.css (raro com Tailwind)
+│   └── ...
 │
-├── styles/                   # Tailwind config e CSS global
-│   ├── tailwind.config.js
-│   └── globals.css
-│
-└── index.tsx                 # Ponto de entrada principal do React/Next
+└── types/                          # Tipagens globais da aplicação ou de entidades compartilhadas
+    ├── index.ts
+    └── db.ts                       # Se estiver usando um ORM como Prisma, os tipos gerados podem ir aqui
+                                    # ou serem importados diretamente do ORM.
+
+// Arquivos na Raiz do Projeto
+// ├── next.config.mjs
+// ├── tailwind.config.ts
+// ├── postcss.config.js
+// ├── tsconfig.json
+// ├── package.json
+// └── .env.local (e outros .env)```
 
 
 ## 🛠️ Ferramentas
 
 Ferramentas como Tailwind, Vitest, Storybook e ESLint devem estar configuradas conforme `ferramentas.md`.
-
-## 🗂️ Documentação de Refatorações
 
 
 ## 🧩 Gerenciamento de Imports e Aliases
@@ -250,9 +386,6 @@ Para garantir a integridade das refatorações, todo código migrado deve seguir
 Este cuidado é essencial para manter a coesão do projeto durante a transição.
 
 
-Toda refatoração realizada deve ser registrada no arquivo único `REFATORACOES.md`, localizado na raiz do diretório `frontend-refactor/`.
-
-
 ### 🔄 Estratégia de Refatoração por Feature
 
 O processo de refatoração seguirá o padrão:
@@ -260,7 +393,7 @@ O processo de refatoração seguirá o padrão:
 1. Escolher uma feature com base em `src/pages/<FeatureName>/`
 2. Fazer varredura completa da pasta original:
    - Identificar todos os arquivos diretos da página
-   - Rastrear todos os elementos usados: components, modals, hooks, services, stores, utils, i18n, etc
+   - Rastrear todos os elementos usados: components, modals, hooks, services, stores, utils, etc
    - Verificar dependências cruzadas e rotas associadas
 3. Migrar essa feature para `src/features/<FeatureName>/` com subpastas adequadas (`pages`, `components`, `hooks`, etc)
 4. Converter os componentes para Tailwind e shadcn/ui mantendo 100% do comportamento visual

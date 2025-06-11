@@ -78,6 +78,10 @@ function ListItemLink(props) {
   );
 }
 
+// 🔁 Este reducer será migrado para um hook chamado useChatListReducer
+// Caminho: src/features/Chat/hooks/useChatListReducer.ts
+// Ele será importado futuramente como:
+// import { useChatListReducer } from "@features/Chat/hooks/useChatListReducer";
 const reducer = (state, action) => {
   if (action.type === "LOAD_CHATS") {
     const chats = action.payload;
@@ -159,6 +163,10 @@ const MainListItems = (props) => {
   const [openFlowsSubmenu, setOpenFlowsSubmenu] = useState(false);
 
   const socketManager = useContext(SocketContext);
+  // 🔔 Esta lógica será migrada para um hook chamado useTicketNotifications
+  // Caminho: src/features/Tickets/hooks/useTicketNotifications.ts
+  // Futuro import:
+  // import { useTicketNotifications } from "@features/Tickets/hooks/useTicketNotifications";
   const { tickets } = useTickets({ withUnreadMessages: "true" });
   const [notifications, setNotifications] = useState([]);
 
@@ -178,6 +186,10 @@ useEffect(() => {
     setPageNumber(1);
   }, [searchParam]);
 
+  // ⚙️ Esta lógica será movida para o hook usePlanFeatures
+  // Caminho: src/features/Settings/hooks/usePlanFeatures.ts
+  // Futuro import:
+  // import { usePlanFeatures } from "@features/Settings/hooks/usePlanFeatures";
   useEffect(() => {
     async function fetchData() {
       const companyId = user.companyId;
@@ -197,6 +209,10 @@ useEffect(() => {
 
 
 
+  // 📥 Esta lógica será extraída para o hook useChatFetcher
+  // Caminho: src/features/Chat/hooks/useChatFetcher.ts
+  // Futuro import:
+  // import { useChatFetcher } from "@features/Chat/hooks/useChatFetcher";
   useEffect(() => {
     const delayDebounceFn = setTimeout(() => {
       fetchChats();
@@ -205,6 +221,10 @@ useEffect(() => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [searchParam, pageNumber]);
 
+  // 📡 Este socket será extraído para o hook useChatSocket
+  // Caminho: src/features/Chat/hooks/useChatSocket.ts
+  // Futuro import:
+  // import { useChatSocket } from "@features/Chat/hooks/useChatSocket";
   useEffect(() => {
     const companyId = localStorage.getItem("companyId");
     const socket = socketManager.getSocket(companyId);
@@ -222,6 +242,10 @@ useEffect(() => {
     };
   }, [socketManager]);
 
+  // 🧮 Este contador será migrado para o hook useUnreadCounter
+  // Caminho: src/features/Chat/hooks/useUnreadCounter.ts
+  // Futuro import:
+  // import { useUnreadCounter } from "@features/Chat/hooks/useUnreadCounter";
   useEffect(() => {
     let unreadsCount = 0;
     if (chats.length > 0) {
@@ -240,12 +264,20 @@ useEffect(() => {
     }
   }, [chats, user.id]);
 
+  // 🧪 Este recurso será movido para o hook useCampaignFlag
+  // Caminho: src/features/Campaigns/hooks/useCampaignFlag.ts
+  // Futuro import:
+  // import { useCampaignFlag } from "@features/Campaigns/hooks/useCampaignFlag";
   useEffect(() => {
     if (localStorage.getItem("cshow")) {
       setShowCampaigns(true);
     }
   }, []);
 
+  // 📶 Este status de conexão será isolado no hook useConnectionWarning
+  // Caminho: src/features/Connections/hooks/useConnectionWarning.ts
+  // Futuro import:
+  // import { useConnectionWarning } from "@features/Connections/hooks/useConnectionWarning";
   useEffect(() => {
     const delayDebounceFn = setTimeout(() => {
       if (whatsApps.length > 0) {

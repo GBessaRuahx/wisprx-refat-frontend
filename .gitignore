@@ -1,6 +1,7 @@
 # Ignore dependencies
 **/node_modules/
-
+.next/
+.vscode/
 # Ignore build outputs
 frontend-refactor/.next/
 frontend-refactor/out/
@@ -11,8 +12,9 @@ logs/
 
 # Environment files
 *.env
-
+inventario-frontend-original.txt
 
 *storybook.log
 storybook-static
 frontend-refactor/tsconfig.tsbuildinfo
+frontend-refact/

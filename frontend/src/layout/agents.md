@@ -1,100 +1,83 @@
-Below is a suggested plan to refactor the application layout following the directives in AGENT.md.
-The goal is to extract the current layout logic from frontend/src/layout/ and migrate it to the new frontend-refactor project while adopting Next.js, TailwindCSS and shadcn/ui components.
 
-1. Estrutura de Diretórios
-frontend-refactor/
-└─ src/
-   ├─ app/
-   │  ├─ layout/
-   │  │  ├─ LoggedInLayout.tsx    # Wrapper principal
-   │  │  ├─ AppBar.tsx            # Barra superior
-   │  │  └─ Sidebar.tsx           # Menu lateral
-   │  └─ providers/
-   │     └─ ThemeProvider.tsx     # Contexto de tema (light/dark)
-   ├─ shared/
-   │  ├─ config/
-   │  │  └─ theme.ts              # Tokens e tema inicial
-   │  └─ hooks/
-   │     └─ useSidebar.ts         # Lógica de abertura/fechamento do menu
-   └─ ui/
-      └─ Logo.tsx                 # Logo reutilizável
-Os arquivos legados (frontend/src/layout/index.js, MainListItems.js, themeContext.js) permanecerão intactos enquanto a migração acontece.
 
-O novo layout ficará totalmente em TypeScript.
 
-2. Componentização
-LoggedInLayout.tsx
+### Refatoração do layout/index.js
 
-Contém a estrutura flex (sidebar + conteúdo) e renderiza <AppBar /> e <Sidebar />.
+O arquivo `frontend/src/layout/index.js` concentrava responsabilidades demais e será dividido em três partes no novo sistema com Next.js App Router. Cada responsabilidade agora terá seu próprio componente especializado, mantendo o código mais limpo, modular e escalável.
 
-Recebe children (React.ReactNode) e controla exibição de acordo com estado de autenticação (via hooks da feature auth).
+#### 🔹 app/layout.tsx
+Wrapper visual principal do sistema logado. Renderiza a estrutura geral com `<AppBar />`, `<Sidebar />`, e o `<main>{children}</main>`. Este arquivo importa os dois componentes abaixo e aplica os providers globais via `app/providers.tsx`. Também se conecta aos hooks `useAuth`, `useSocket`, `useSidebar`.
 
-Utiliza TailwindCSS para estilos e componentes de shadcn/ui (Drawer, Button, Avatar, etc.).
+#### 🔹 components/AppBar.tsx
+Componente visual do topo do sistema. Mostra nome do usuário, empresa, avatar, idioma, modo escuro, notificações, botão de logout, e outros elementos visuais fixos. Pode usar `AuthContext` ou `useAuth()` diretamente.
 
-Sidebar.tsx
+#### 🔹 components/Sidebar.tsx
+Responsável por renderizar o menu lateral. Substitui o antigo `MainListItems.js`. Suporta Drawer responsivo (`temporary` em mobile, `permanent` em desktop) e recebe os itens de menu como array tipado (`SidebarItem[]`). Utiliza Zustand ou hook `useSidebar()` para controlar estado aberto/fechado.
 
-Implementa o menu lateral anteriormente definido em MainListItems.js.
+Essa separação permite escalar facilmente a aplicação, adaptar responsividade e reutilizar partes da UI com clareza.
 
-Itens do menu devem ser declarados como um array tipado (SidebarItem[]) para facilitar customização.
+### Refatoração do MainListItems.js
 
-Conecta-se a Zustand ou a um hook useSidebar para gerenciar estado (aberto/fechado, colapsado).
+O arquivo `frontend/src/layout/MainListItems.js` centraliza responsabilidades demais: renderização do menu, lógica de plano, estado de submenus, notificações dinâmicas e uso de múltiplos contextos. Isso viola os princípios de separação de preocupações e dificulta manutenção e testes.
 
-AppBar.tsx
+Ele será refatorado e dividido em quatro partes:
 
-Refatora a AppBar do Material‑UI para um header com Tailwind: logo, controles de idioma (LanguageControl), ícone de perfil, botão de logout, notificações.
+#### 🔹 components/Sidebar.tsx
+Responsável por renderizar a lista de navegação principal no Drawer. Recebe os itens como props ou via hook `useSidebarItems`. Usa `SidebarItem.tsx` para cada item individual.
 
-Centraliza aqui o botão de alternância de tema (claro/escuro) e as interações de usuário.
+#### 🔹 components/SidebarItem.tsx
+Renderiza cada entrada da sidebar, incluindo ícone, badge, rótulo e navegação condicional. Suporta submenus com children.
 
-ThemeProvider.tsx
+#### 🔹 hooks/useSidebarItems.ts
+Contém toda a lógica para:
+- Consultar plano (`getPlanCompany`)
+- Determinar permissões de exibição por recurso (campanhas, kanban, etc)
+- Obter dados dinâmicos (tickets, chats não lidos, status WhatsApp)
+- Gerenciar submenus (`openCampaignSubmenu`, `openFlowsSubmenu`)
+- Construir e retornar um array tipado de `SidebarItem[]`
 
-Implementa contexto para alternância de tema, migrando a lógica de themeContext.js.
+#### 🔹 types/SidebarItem.ts
+Define a tipagem formal do item de menu:
+```ts
+export interface SidebarItem {
+  label: string;
+  path?: string;
+  icon?: JSX.Element;
+  badge?: number | boolean;
+  children?: SidebarItem[];
+  permission?: string;
+  condition?: boolean;
+}
+```
 
-Usa tokens definidos em shared/config/theme.ts para gerar classes Tailwind (via className e utilidades do shadcn/ui).
+Essa estrutura modular torna a sidebar extensível, testável e alinhada com as boas práticas modernas do Next.js.
 
-Logo.tsx
 
-Componente simples para exibir o logo atual, recebendo src e alt por props (preparado para customização futura).
+### Substituição do themeContext.js
 
-3. Passos de Migração
-Criar novos arquivos vazios (acima) em frontend-refactor/src/app/layout/ e src/shared/.
+O arquivo `frontend/src/layout/themeContext.js` será completamente removido na nova arquitetura. Ele será substituído por uma implementação nativa baseada no `ThemeProvider` do `next-themes`, já integrado ao ecossistema do `shadcn/ui` e ao Tailwind CSS.
 
-Copiar a lógica do antigo index.js para LoggedInLayout.tsx, adaptando:
+O novo controle de tema (claro/escuro) será feito via classe `dark` aplicada no `<html>`, com persistência automática em `localStorage` e integração com o sistema operacional (modo `system`).
 
-Estados (useState, useContext) convertidos para tipos explícitos.
+#### 🔹 Novo arquivo: components/theme-provider.tsx
 
-Imports do Material‑UI substituídos por componentes shadcn/ui (e.g., <Drawer>, <Button>, <Avatar>).
+```tsx
+'use client';
 
-Classes MUI (makeStyles) transformadas em utilitários Tailwind.
+import { ThemeProvider as NextThemesProvider } from 'next-themes';
+import { ThemeProviderProps } from 'next-themes/dist/types';
 
-Migrar o conteúdo de MainListItems.js para Sidebar.tsx:
+export function ThemeProvider({ children, ...props }: ThemeProviderProps) {
+  return <NextThemesProvider {...props}>{children}</NextThemesProvider>;
+}
+```
 
-Mapear itens do menu num array e renderizar com .map().
+Esse provedor será usado dentro de `app/layout.tsx`, envolvendo toda a aplicação:
 
-Manter permissões (Can) e controle de colapso, ajustando para hooks/lojas (Zustand) se necessário.
+```tsx
+<ThemeProvider attribute="class" defaultTheme="system" enableSystem>
+  {children}
+</ThemeProvider>
+```
 
-Implementar ThemeProvider.tsx com Context API para armazenar o tema atual e função toggleTheme.
-
-Importar em src/app/App.jsx para envolver a aplicação inteira.
-
-Atualizar src/app/routes/index.jsx e páginas que utilizam o layout:
-
-Páginas logadas renderizam <LoggedInLayout> como wrapper.
-
-Rotas públicas (login, signup) permanecem fora do layout.
-
-Documentar cada arquivo migrado no inventario-frontend-original.txt e adicionar um novo registro em REFATORACOES.md com hash e data.
-
-4. Pontos de Atenção
-Manter a mesma experiência visual enquanto o restante do código legado ainda utiliza Material‑UI.
-
-Garantir que todos os estados/contextos necessários (AuthContext, SocketContext, etc.) estejam disponíveis no novo layout via src/app/providers/.
-
-Testar responsividade do Tailwind para replicar o comportamento atual (Drawer temporário em telas menores, AppBar fixa, etc.).
-
-Atualizar importações em qualquer página já migrada para usar @app/layout/LoggedInLayout e @app/providers/ThemeProvider.
-
-5. Compatibilidade e Futuras Migrações
-Enquanto o código legado existir, algumas páginas continuarão renderizando o layout antigo.
-O novo layout deve ser utilizado apenas nas rotas migradas, garantindo que nenhuma funcionalidade se perca.
-
-Após a conclusão das features principais, remova gradualmente os arquivos da pasta frontend/src/layout/ e referencie frontend-refactor como fonte única.
+Essa abordagem elimina a necessidade de `ColorModeContext` manual, reduz complexidade e adota o padrão moderno da stack atual do Wisprx.
